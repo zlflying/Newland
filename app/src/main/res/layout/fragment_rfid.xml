@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.xuexiang.xui.widget.popupwindow.status.StatusView
+                android:id="@+id/status"
+                style="@style/StatusView.Custom"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="RFID测试"
+                android:textColor="#3E99D2"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/rfid_ip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/rfid_prot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/serial_ports_rfid"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:enabled="true"
+                    app:ms_entries="@array/serial_ports" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/select_con_mode" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <com.xuexiang.xui.widget.tabbar.TabControlView
+                    android:id="@+id/select_rfid_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:tcv_defaultSelection="0"
+                    app:tcv_equalWidth="true"
+                    app:tcv_items="@array/serial_socket"
+                    app:tcv_values="@array/mode_rfid_val" />
+
+
+                <com.xuexiang.xui.widget.textview.label.LabelButtonView
+                    android:id="@+id/bt_rfidconnection"
+                    style="@style/Button.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/con_text"
+                    app:label_backgroundColor="#C2185B"
+                    app:label_distance="15dp"
+                    app:label_height="18dp"
+                    app:label_orientation="LEFT_TOP"
+                    app:label_text="网络"
+                    app:label_textSize="10sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/xui_config_color_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15sp"
+                    android:layout_weight="1"
+                    android:text="卡号（Epc）"
+                    android:textSize="20sp" />
+
+                <com.xuexiang.xui.widget.button.CountDownButton
+                    android:id="@+id/bt_read_loop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:padding="8dp"
+                    android:text="循环读取"
+                    android:textColor="@color/xui_config_color_blue"
+                    app:cdbt_countDown="10" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_rfid_epc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:gravity="center"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/iv_read_rfid"
+                android:layout_width="100sp"
+                android:layout_height="88sp"
+                android:layout_gravity="center"
+                android:src="@drawable/rfid" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="点击图标读取"
+                android:textColor="#3E99D2" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

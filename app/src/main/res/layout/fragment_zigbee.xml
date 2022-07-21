@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.xuexiang.xui.widget.popupwindow.status.StatusView
+                android:id="@+id/status"
+                style="@style/StatusView.Custom"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="ZigBee测试"
+                android:textColor="#3E99D2"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/zigbee_ip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/zigbee_prot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/serial_ports_zigbee"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:enabled="true"
+                    app:ms_entries="@array/serial_ports" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/select_con_mode" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <com.xuexiang.xui.widget.tabbar.TabControlView
+                    android:id="@+id/select_zigbee_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:tcv_defaultSelection="0"
+                    app:tcv_equalWidth="true"
+                    app:tcv_items="@array/serial_socket"
+                    app:tcv_values="@array/mode_zigbee_val" />
+
+
+                <com.xuexiang.xui.widget.textview.label.LabelButtonView
+                    android:id="@+id/bt_zigbeeconnection"
+                    style="@style/Button.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/con_text"
+                    app:label_backgroundColor="#C2185B"
+                    app:label_distance="15dp"
+                    app:label_height="18dp"
+                    app:label_orientation="LEFT_TOP"
+                    app:label_text="网络"
+                    app:label_textSize="10sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/xui_config_color_blue" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="20dp"
+                android:text="选择已有传感器:" />
+
+            <com.xuexiang.xui.widget.flowlayout.FlowTagLayout
+                android:id="@+id/flowlayout_zigbee_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="15sp"
+                app:ftl_check_mode="multi"
+                app:ftl_entries="@array/tags_zigbee_sensor_info" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="15sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="11"
+                    android:text="传感器数据:" />
+
+                <TextView
+                    android:id="@+id/tv_getzigbee_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10sp"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:padding="5dp"
+                    android:text="获取实时传感器数据"
+                    android:textColor="#3E99D2" />
+            </LinearLayout>
+
+
+            <com.xuexiang.xui.widget.flowlayout.FlowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="15sp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="温度:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getTem_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="湿度:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getHum_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="酒精:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getAlcohol_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="一氧化碳:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getCO_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="火焰:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getFire_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="光照:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getLight_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="人体:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getPerson_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="重力:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getWeight_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="可燃气体:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/z_getGas_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+            </com.xuexiang.xui.widget.flowlayout.FlowLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:text="控制继电器设备"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
+                    android:id="@+id/ed_CtrlDoubleRelay"
+                    android:layout_width="170sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10sp"
+                    android:hint="@string/input_double_relay_num"
+                    android:textSize="15sp"
+                    app:met_allowEmpty="false"
+                    app:met_autoValidate="true"
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="normal"
+                    app:met_floatingLabelText="序列号"
+                    app:met_floatingLabelTextColor="@color/label_color"
+                    app:met_regexp="^\\d{1,}$"
+                    app:met_textColor="#3E99D2" />
+
+                <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
+                    android:id="@+id/sw_DoubleRelay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="40sp"
+                    android:layout_marginEnd="15sp"
+                    android:textSize="15sp"
+                    app:swb_textOff="  开  "
+                    app:swb_textOn="  关  " />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp">
+
+                <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
+                    android:id="@+id/ed_CtrlSingleRelay"
+                    android:layout_width="170sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10sp"
+                    android:hint="@string/input_single_relay_num"
+                    android:textSize="15sp"
+                    app:met_allowEmpty="false"
+                    app:met_autoValidate="true"
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="normal"
+                    app:met_floatingLabelText="序列号"
+                    app:met_floatingLabelTextColor="@color/label_color"
+                    app:met_regexp="^\\d{1,}$"
+                    app:met_textColor="#3E99D2" />
+
+                <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
+                    android:id="@+id/sw_SingleRelay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="40sp"
+                    android:layout_marginEnd="15sp"
+                    android:textSize="15sp"
+                    app:swb_textOff="  开  "
+                    app:swb_textOn="  关  " />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <!--4150DO口标签-->
+    <string-array name="tags_4150_Do_values">
+        <item>DO0</item>
+        <item>DO1</item>
+        <item>DO2</item>
+        <item>DO3</item>
+        <item>DO4</item>
+        <item>DO5</item>
+        <item>DO6</item>
+        <item>DO7</item>
+    </string-array>
+
+    <!--4017传感器类型-->
+    <string-array name="tags_4017values">
+        <item>未指定传感类型</item>
+        <item>TEM(温度)</item>
+        <item>HUM(湿度)</item>
+        <item>LIGHT(光照)</item>
+        <item>WIN(风速)</item>
+        <item>PRE(大气压力)</item>
+        <item>CO2(二氧化碳)</item>
+        <item>AIR(空气质量)</item>
+        <item>SOIL_TEM(土壤温度)</item>
+        <item>SOIL_WATER(土壤水分)</item>
+        <item>WATER_TEM(水温)</item>
+        <item>WATER_LEV(水位)</item>
+        <item>NOISE(噪音)</item>
+    </string-array>
+
+    <!--led屏模式tag-->
+    <string-array name="tags_ledType_values">
+        <item>LEFT(左移)</item>
+        <item>UP(上移)</item>
+        <item>DOWN(下移)</item>
+        <item>DOWN_OVER(下覆盖)</item>
+        <item>UP_OVER(上覆盖)</item>
+        <item>WHITE(翻白显示)</item>
+        <item>SPANGLE(闪烁显示)</item>
+        <item>NOW(立即打出)</item>
+    </string-array>
+
+    <!--led屏模式tag-->
+    <string-array name="tags_ledSpeed_values">
+        <item>SPEED1</item>
+        <item>SPEED2</item>
+        <item>SPEED3</item>
+        <item>SPEED4</item>
+        <item>SPEED5</item>
+        <item>SPEED6</item>
+        <item>SPEED7</item>
+        <item>SPEED8</item>
+    </string-array>
+
+    <string-array name="tags_zigbee_sensor_info">
+        <item>温度</item>
+        <item>湿度</item>
+        <item>酒精</item>
+        <item>一氧化碳</item>
+        <item>火焰</item>
+        <item>光照</item>
+        <item>人体</item>
+        <item>重力</item>
+        <item>可燃气体</item>
+    </string-array>
+
+    <string-array name="serial_ports" tools:ignore="InconsistentArrays">
+        <item>COM1</item>
+        <item>COM2</item>
+        <item>COM3</item>
+        <item>COM4</item>
+        <item>NONE</item>
+    </string-array>
+
+    <string-array name="serial_socket">
+        <item>网络连接</item>
+        <item>串口连接</item>
+    </string-array>
+
+    <string-array name="mode_4150_val" tools:ignore="InconsistentArrays">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="mode_4017_val" tools:ignore="InconsistentArrays">
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="mode_zigbee_val" tools:ignore="InconsistentArrays">
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="mode_rfid_val" tools:ignore="InconsistentArrays">
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="mode_led_val" tools:ignore="InconsistentArrays">
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+</resources>

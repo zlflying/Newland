@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.xuexiang.xui.widget.popupwindow.status.StatusView
+                android:id="@+id/status"
+                style="@style/StatusView.Custom"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="4017测试"
+                android:textColor="#3E99D2"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/adam4017_ip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/adam4017_prot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2" />
+                </LinearLayout>
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/serial_ports_4017"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:enabled="true"
+                    app:ms_entries="@array/serial_ports" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/select_con_mode" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <com.xuexiang.xui.widget.tabbar.TabControlView
+                    android:id="@+id/select_4017_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:tcv_defaultSelection="0"
+                    app:tcv_equalWidth="true"
+                    app:tcv_items="@array/serial_socket"
+                    app:tcv_values="@array/mode_4017_val" />
+
+
+                <com.xuexiang.xui.widget.textview.label.LabelButtonView
+                    android:id="@+id/bt_4017connection"
+                    style="@style/Button.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/con_text"
+                    app:label_backgroundColor="#C2185B"
+                    app:label_distance="15dp"
+                    app:label_height="18dp"
+                    app:label_orientation="LEFT_TOP"
+                    app:label_text="网络"
+                    app:label_textSize="10sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/xui_config_color_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="获得VIN口数据:" />
+
+                <TextView
+                    android:id="@+id/tv_getvin_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:padding="5dp"
+                    android:text="实时获取数据"
+                    android:textColor="#3E99D2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15sp"
+                    android:text="VIN0:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin0selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="VIN1:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin1selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="VIN2:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin2selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="VIN3:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin3selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="VIN4:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin4selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="VIN5:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin5selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="VIN6:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin6selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="VIN7:"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_vin7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/xui_config_color_red" />
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/ms_4017_vin7selectSenor"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5sp"
+                    android:enabled="true"
+                    app:ms_entries="@array/tags_4017values" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

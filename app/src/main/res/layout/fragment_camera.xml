@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.xuexiang.xui.widget.popupwindow.status.StatusView
+                android:id="@+id/status"
+                style="@style/StatusView.Custom"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Camera测试"
+                android:textColor="#3E99D2"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/camera_ip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/camera_prot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2" />
+                </LinearLayout>
+
+                <com.xuexiang.xui.widget.textview.label.LabelButtonView
+                    android:id="@+id/bt_cameraconnection"
+                    style="@style/Button.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/con_text"
+                    app:label_backgroundColor="#C2185B"
+                    app:label_distance="15dp"
+                    app:label_height="18dp"
+                    app:label_orientation="LEFT_TOP"
+                    app:label_text="网络"
+                    app:label_textSize="10sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/xui_config_color_blue" />
+
+            <com.newland.view.PlayerView
+                android:id="@+id/playerView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:backgroundTint="@color/xui_config_color_blue" />
+            <!--            <TextureView-->
+            <!--                android:id="@+id/textureView"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="200dp"-->
+            <!--                android:backgroundTint="@color/xui_config_color_blue" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/xui_config_color_blue" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:layout_gravity="center"
+                android:layout_margin="40dp">
+
+                <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                    android:id="@+id/bt_up"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:text=" UP "
+                    app:rb_backgroundColor="@color/xui_config_color_blue"
+                    app:rb_isRadiusAdjustBounds="true" />
+
+                <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                    android:id="@+id/bt_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:text="DOWN"
+                    app:rb_backgroundColor="@color/xui_config_color_blue"
+                    app:rb_isRadiusAdjustBounds="true" />
+
+                <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                    android:id="@+id/bt_right"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:text="RIGHT"
+                    app:rb_backgroundColor="@color/xui_config_color_blue"
+                    app:rb_isRadiusAdjustBounds="true" />
+
+                <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                    android:id="@+id/bt_left"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="LEFT"
+                    app:rb_backgroundColor="@color/xui_config_color_blue"
+                    app:rb_isRadiusAdjustBounds="true" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

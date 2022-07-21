@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.xuexiang.xui.widget.popupwindow.status.StatusView
+                android:id="@+id/status"
+                style="@style/StatusView.Custom"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone" />
+            <!--连接布局-->
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/test_4150"
+                android:textColor="#3E99D2"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/con_4150_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/adam4150_ip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/adam4150_prot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#3E99D2"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/serial_ports_4150"
+                    style="@style/Material.SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:enabled="true"
+                    app:ms_entries="@array/serial_ports" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/select_con_mode" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <com.xuexiang.xui.widget.tabbar.TabControlView
+                    android:id="@+id/select_4150_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:tcv_defaultSelection="0"
+                    app:tcv_equalWidth="true"
+                    app:tcv_items="@array/serial_socket"
+                    app:tcv_values="@array/mode_4150_val" />
+
+
+                <com.xuexiang.xui.widget.textview.label.LabelButtonView
+                    android:id="@+id/bt_4150connection"
+                    style="@style/Button.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="连接"
+                    app:label_backgroundColor="#C2185B"
+                    app:label_distance="15dp"
+                    app:label_height="18dp"
+                    app:label_orientation="LEFT_TOP"
+                    app:label_text="网络"
+                    app:label_textSize="10sp" />
+
+            </LinearLayout>
+            <!--连接布局-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/xui_config_color_blue" />
+            <!--调试布局-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="控制DO口继电器:" />
+
+                <TextView
+                    android:id="@+id/tv_check_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20sp"
+                    android:autoLink="all"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:padding="5dp"
+                    android:text="更新状态"
+                    android:textColor="#3E99D2" />
+
+                <TextView
+                    android:id="@+id/tv_clear4150_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15sp"
+                    android:autoLink="all"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:padding="5dp"
+                    android:text="清除选择"
+                    android:textColor="#3E99D2" />
+
+            </LinearLayout>
+
+            <com.xuexiang.xui.widget.flowlayout.FlowTagLayout
+                android:id="@+id/flowlayout_4150_DO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="15sp"
+                app:ftl_check_mode="multi"
+                app:ftl_entries="@array/tags_4150_Do_values"
+                app:ftl_selecteds="@array/tags_4150_Do_values" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_open_4150"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:layout_weight="1"
+                    android:text="@string/open_all"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/bt_close_4150"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_weight="1"
+                    android:text="@string/close_all"
+                    android:textSize="15sp"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="DI口数据:" />
+
+
+                <TextView
+                    android:id="@+id/tv_getdi_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15sp"
+                    android:autoLink="all"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:padding="5dp"
+                    android:text="获取实时DI口数据"
+                    android:textColor="#3E99D2" />
+
+            </LinearLayout>
+
+            <com.xuexiang.xui.widget.flowlayout.FlowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="DI0:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/tv_di0_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="DI1:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/tv_di1_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="DI2:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/tv_di2_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="DI3:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/tv_di3_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="DI4:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/tv_di4_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="DI5:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/tv_di5_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_rect_round_tag_btn"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="DI6:"
+                        android:textColor="#3E99D2" />
+
+                    <TextView
+                        android:id="@+id/tv_di6_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:textColor="@color/xui_config_color_red" />
+                </LinearLayout>
+
+            </com.xuexiang.xui.widget.flowlayout.FlowLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

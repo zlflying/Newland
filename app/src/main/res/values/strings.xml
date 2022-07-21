@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Newland</string>
+    <string name="first_text">
+        本程序用于新大陆设备的连接测试，可用于检测ADAM4150、ADAM4017的连接是否正确，及有没有正确传输数据和发送命令；\n
+        ZigBee是否配置正确及数据传输；\n
+        RFID是否能够正常读取标签数据；\n
+        LED屏发送数据；\n
+        网络摄像头的使用。\n
+        注:默认IP地址为192.168.0.1\n
+           默认端口号为1000
+    </string>
+    <string name="tip_closeapp">是否关闭程序?</string>
+    <string name="lab_yes">是</string>
+    <string name="lab_no">否</string>
+    <string name="input_ip">请输入ip地址</string>
+    <string name="input_single_relay_num">输入单联继电器序列号</string>
+    <string name="input_double_relay_num">输入双联继电器序列号</string>
+    <string name="get_local_ip">获取本机ip地址</string>
+    <string name="newland_test">新大陆设备测试</string>
+    <string name="ledscreen_test">LedScreen测试</string>
+    <string name="about_copyright">© %1$s zlflying All rights reserved.</string>
+    <string name="connect">连接</string>
+    <string name="share_app">点击分享该软件</string>
+    <string name="share_cookie_title">手机扫码下载软件</string>
+    <string name="cookie_message">已自动填充本机IP地址，请注意网络配置是否正确！</string>
+    <string name="save_info">"是否保存！"</string>
+
+    <string name="connecting_text">连接中&#8230;</string>
+    <string name="connected_text">连接成功！</string>
+    <string name="connection_error_text">连接失败！</string>
+    <string name="is_save_login_info">保存登录信息</string>
+    <string name="login">登录</string>
+    <string name="input_login_passwd">输入登录密码</string>
+    <string name="input_username">输入用户名</string>
+    <string name="test_4150">4150测试</string>
+    <string name="close_all">关闭全部</string>
+    <string name="open_all">打开全部</string>
+    <string name="select_con_mode">选择连接模式:</string>
+    <string name="con_text">连接</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

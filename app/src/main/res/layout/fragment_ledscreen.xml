@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.xuexiang.xui.widget.popupwindow.status.StatusView
+        android:id="@+id/status"
+        style="@style/StatusView.Custom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="@string/ledscreen_test"
+        android:textColor="#3E99D2"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ledscreen_ip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#3E99D2"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ledscreen_prot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#3E99D2"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                android:id="@+id/serial_ports_led"
+                style="@style/Material.SpinnerStyle"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:enabled="true"
+                app:ms_entries="@array/serial_ports" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/select_con_mode" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal">
+
+        <com.xuexiang.xui.widget.tabbar.TabControlView
+            android:id="@+id/select_led_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:tcv_defaultSelection="0"
+            app:tcv_equalWidth="true"
+            app:tcv_items="@array/serial_socket"
+            app:tcv_values="@array/mode_led_val" />
+
+
+        <com.xuexiang.xui.widget.textview.label.LabelButtonView
+            android:id="@+id/bt_ledconnection"
+            style="@style/Button.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/con_text"
+            app:label_backgroundColor="#C2185B"
+            app:label_distance="15dp"
+            app:label_height="18dp"
+            app:label_orientation="LEFT_TOP"
+            app:label_text="网络"
+            app:label_textSize="10sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/xui_config_color_blue" />
+
+    <com.xuexiang.xui.widget.edittext.MultiLineEditText
+        android:id="@+id/send_led_text"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        app:mlet_contentTextSize="16dp"
+        app:mlet_hintText="请输入要发送led屏的内容" />
+
+    <TextView
+        style="@style/TextStyle.Explain"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="20dp"
+        android:text="选择LED发送类型："
+        android:textSize="15sp" />
+
+    <com.xuexiang.xui.widget.flowlayout.FlowTagLayout
+        android:id="@+id/flowlayout_ledType_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ftl_entries="@array/tags_ledType_values"
+        app:ftl_selecteds="@array/tags_ledType_values" />
+
+    <!--    <TextView-->
+    <!--        style="@style/TextStyle.Explain"-->
+    <!--        android:layout_marginStart="10sp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:text="选择LED发送速度："-->
+    <!--        android:textSize="15sp" />-->
+
+    <!--    <com.xuexiang.xui.widget.flowlayout.FlowTagLayout-->
+    <!--        android:id="@+id/flowlayout_ledSpeed_select"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"/>-->
+
+</LinearLayout>
