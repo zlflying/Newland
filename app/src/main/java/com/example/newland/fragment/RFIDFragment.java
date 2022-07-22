@@ -5,21 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.newland.activity.MainActivity;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentRfidBinding;
 import com.example.newland.utils.XToastUtils;
 import com.nle.mylibrary.forUse.rfid.RFID;
 import com.nle.mylibrary.forUse.rfid.SingleEpcListener;
 import com.nle.mylibrary.transfer.DataBusFactory;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.utils.CountDownButtonHelper;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
+import com.xuexiang.xutil.XUtil;
 
 @Page(name = "RFID")
 public class RFIDFragment extends BaseFragment {
     FragmentRfidBinding binding;
+    private MMKV kv;
     private RFID rfid;
 
     @Override
@@ -36,6 +38,7 @@ public class RFIDFragment extends BaseFragment {
     @SuppressLint("SetTextI18n")
     @Override
     protected void initViews() {
+        kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         CountDownButtonHelper countDownButtonHelper = new CountDownButtonHelper(binding.btReadLoop, 9);
         binding.serialPortsRfid.setSelectedIndex(4);
         binding.selectRfidMode.setOnTabSelectionChangedListener((title, value) -> {
@@ -47,13 +50,13 @@ public class RFIDFragment extends BaseFragment {
                 binding.btRfidconnection.setLabelOrientation(2);
             }
         });
-        binding.rfidIp.setText("ip地址: " + MainActivity.getSharedPreferences().getString("ipaddress_rfid", "请在设置中配置连接参数"));
-        binding.rfidProt.setText("端口: " + MainActivity.getSharedPreferences().getInt("port_rfid", 1000));
+        binding.rfidIp.setText("ip地址: " + kv.decodeString("ipaddress_rfid", "请在设置中配置连接参数"));
+        binding.rfidProt.setText("端口: " + kv.decodeInt("port_rfid", 1000));
         binding.btRfidconnection.setOnClickListener(view -> {
             if (rfid == null) {
                 if (binding.btRfidconnection.getLabelText().equals("网络")) {
-                    rfid = new RFID(DataBusFactory.newSocketDataBus(MainActivity.getSharedPreferences().getString("ipaddress_rfid", "192.168.0.1"),
-                            MainActivity.getSharedPreferences().getInt("port_rfid", 1000)), b -> {
+                    rfid = new RFID(DataBusFactory.newSocketDataBus(kv.decodeString("ipaddress_rfid", "192.168.0.1"),
+                            kv.decodeInt("port_rfid", 1000)), b -> {
                         if (b) {
                             binding.status.setStatus(Status.COMPLETE);
                             binding.btRfidconnection.setText("Socket已连接");
@@ -115,7 +118,7 @@ public class RFIDFragment extends BaseFragment {
                     rfid.readSingleEpc(new SingleEpcListener() {
                         @Override
                         public void onVal(String s) {
-                            getActivity().runOnUiThread(() -> {
+                            XUtil.runOnUiThread(() -> {
                                 binding.tvRfidEpc.setText(s);
                             });
                         }

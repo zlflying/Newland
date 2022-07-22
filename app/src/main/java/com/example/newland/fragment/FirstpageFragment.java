@@ -11,6 +11,7 @@ import com.example.newland.databinding.FragmentFirstpageBinding;
 import com.example.newland.utils.MyUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
+import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.widget.popupwindow.bar.CookieBar;
 
 @Page(name = "首页")
@@ -35,7 +36,7 @@ public class FirstpageFragment extends BaseFragment {
             MyUtils.setVIBRATE(getContext());
             CookieBar.builder(getActivity())
                     .setTitle("本机 IP 地址")
-                    .setMessage(MyUtils.getIPAddress(getContext()))
+                    .setMessage(MyUtils.getIPAddress(XUI.getContext()))
                     .setBackgroundColor(R.color.tips)
                     .setTitleColor(android.R.color.white)
                     .setLayoutGravity(Gravity.TOP)
@@ -57,7 +58,7 @@ public class FirstpageFragment extends BaseFragment {
 
         binding.copyToken.setOnClickListener(view -> {
             String token_str = binding.token.getText().toString().trim();
-            MyUtils.sendClipboard(getContext(), "token", token_str);
+            MyUtils.sendClipboard(XUI.getContext(), "token", token_str);
         });
     }
 

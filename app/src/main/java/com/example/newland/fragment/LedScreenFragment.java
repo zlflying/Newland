@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.newland.activity.MainActivity;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentLedscreenBinding;
 import com.example.newland.utils.XToastUtils;
@@ -15,6 +14,7 @@ import com.nle.mylibrary.enums.led.ShowSpeed;
 import com.nle.mylibrary.forUse.led.LedListener;
 import com.nle.mylibrary.forUse.led.LedScreen;
 import com.nle.mylibrary.transfer.DataBusFactory;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
@@ -25,6 +25,7 @@ public class LedScreenFragment extends BaseFragment {
     FragmentLedscreenBinding binding;
     private LedScreen ledScreen;
     private LedListener ledListener;
+    private MMKV kv;
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
@@ -40,6 +41,7 @@ public class LedScreenFragment extends BaseFragment {
     @SuppressLint("SetTextI18n")
     @Override
     protected void initViews() {
+        kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         binding.serialPortsLed.setSelectedIndex(4);
         binding.selectLedMode.setOnTabSelectionChangedListener((title, value) -> {
             if (value.equals("9")) {
@@ -50,8 +52,8 @@ public class LedScreenFragment extends BaseFragment {
                 binding.btLedconnection.setLabelOrientation(2);
             }
         });
-        binding.ledscreenIp.setText("ip地址: " + MainActivity.getSharedPreferences().getString("ipaddress_led", "请在设置中配置连接参数"));
-        binding.ledscreenProt.setText("端口: " + MainActivity.getSharedPreferences().getInt("port_led", 1000));
+        binding.ledscreenIp.setText("ip地址: " + kv.decodeString("ipaddress_led", "请在设置中配置连接参数"));
+        binding.ledscreenProt.setText("端口: " + kv.decodeInt("port_led", 1000));
         binding.flowlayoutLedTypeSelect.setOnTagClickListener((parent, view, position) -> {
             try {
                 switch (position) {
@@ -87,8 +89,8 @@ public class LedScreenFragment extends BaseFragment {
         binding.btLedconnection.setOnClickListener(view -> {
             if (ledScreen == null) {
                 if (binding.btLedconnection.getLabelText().equals("网络")) {
-                    ledScreen = new LedScreen(DataBusFactory.newSocketDataBus(MainActivity.getSharedPreferences().getString("ipaddress_led", "192.168.0.1")
-                            , MainActivity.getSharedPreferences().getInt("port_led", 1000)), b -> {
+                    ledScreen = new LedScreen(DataBusFactory.newSocketDataBus(kv.decodeString("ipaddress_led", "192.168.0.1")
+                            , kv.decodeInt("port_led", 1000)), b -> {
                         if (b) {
                             binding.status.setStatus(Status.COMPLETE);
                             binding.btLedconnection.setText("Socket已连接");

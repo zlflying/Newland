@@ -15,9 +15,11 @@ import com.nle.mylibrary.forUse.mdbus4150.MdBus4150RelayListener;
 import com.nle.mylibrary.forUse.mdbus4150.MdBus4150SensorListener;
 import com.nle.mylibrary.forUse.mdbus4150.Modbus4150;
 import com.nle.mylibrary.transfer.DataBusFactory;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
+import com.xuexiang.xutil.XUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +31,7 @@ public class Modbus4150Fragment extends BaseFragment {
     FragmentModbus4150Binding binding;
     private Modbus4150 modbus4150;
     private MdBus4150RelayListener mdBus4150RelayListener;
+    private MMKV kv;
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
@@ -45,11 +48,9 @@ public class Modbus4150Fragment extends BaseFragment {
     @SuppressLint("SetTextI18n")
     @Override
     protected void initViews() {
+        kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         binding.flowlayout4150DO.clearSelection();
-
-
         binding.serialPorts4150.setSelectedIndex(4);
-
         binding.select4150Mode.setOnTabSelectionChangedListener((title, value) -> {
             if (value.equals("1")) {
                 binding.bt4150connection.setLabelText("网络");
@@ -59,10 +60,8 @@ public class Modbus4150Fragment extends BaseFragment {
                 binding.bt4150connection.setLabelOrientation(2);
             }
         });
-
-        binding.adam4150Ip.setText("ip地址: " + MainActivity.getSharedPreferences().getString("ipaddress_4150", "请在设置中配置连接参数"));
-        binding.adam4150Prot.setText("端口: " + MainActivity.getSharedPreferences().getInt("port_4150", 1000));
-
+        binding.adam4150Ip.setText("ip地址: " + kv.decodeString("ipaddress_4150", "请在设置中配置连接参数"));
+        binding.adam4150Prot.setText("端口: " + kv.decodeInt("port_4150", 1000));
         binding.flowlayout4150DO.setOnTagSelectListener((parent, position, selectedList) -> {
             try {
                 if (!selectedList.contains(position)) {
@@ -76,7 +75,6 @@ public class Modbus4150Fragment extends BaseFragment {
                 e.printStackTrace();
             }
         });
-
         binding.tvCheckState.setOnClickListener(view -> new Thread(() -> {
             List<Integer> do_stat = new ArrayList<>();
             for (int o = 0; o < 8; o++) {
@@ -100,7 +98,7 @@ public class Modbus4150Fragment extends BaseFragment {
                     e.printStackTrace();
                 }
             }
-            getActivity().runOnUiThread(() -> {
+            XUtil.runOnUiThread(() -> {
                 if (do_stat.size() == 0) {
                     binding.flowlayout4150DO.clearSelection();
                 } else {
@@ -113,8 +111,8 @@ public class Modbus4150Fragment extends BaseFragment {
         binding.bt4150connection.setOnClickListener(view -> {
             if (modbus4150 == null) {
                 if (binding.bt4150connection.getLabelText().equals("网络")) {
-                    modbus4150 = new Modbus4150(DataBusFactory.newSocketDataBus(MainActivity.getSharedPreferences().getString("ipaddress_4150", "192.168.0.1"),
-                            MainActivity.getSharedPreferences().getInt("port_4150", 1000)), b -> {
+                    modbus4150 = new Modbus4150(DataBusFactory.newSocketDataBus(kv.decodeString("ipaddress_4150", "192.168.0.1"),
+                            kv.decodeInt("port_4150", 1000)), b -> {
                         if (b) {
                             binding.status.setStatus(Status.COMPLETE);
                             binding.bt4150connection.setText("Socket已连接");
@@ -193,7 +191,7 @@ public class Modbus4150Fragment extends BaseFragment {
                 }
             }
             try {
-                getActivity().runOnUiThread(() -> {
+                XUtil.runOnUiThread(() -> {
                     if (di_info_list.isEmpty()) {
                         XToastUtils.error("获取失败!");
                         return;

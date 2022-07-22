@@ -7,14 +7,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.newland.activity.MainActivity;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentCameraBinding;
 import com.example.newland.utils.XToastUtils;
 import com.newland.CameraManager;
 import com.newland.PTZ;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
+import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
 
 @Page(name = "Camera")
@@ -22,6 +23,7 @@ public class CameraFragment extends BaseFragment {
     FragmentCameraBinding binding;
     private CameraManager cameraManager;
     private final Handler handler = new Handler();
+    private MMKV kv;
 
 
     @Override
@@ -38,19 +40,20 @@ public class CameraFragment extends BaseFragment {
     @SuppressLint({"SetTextI18n"})
     @Override
     protected void initViews() {
+        kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
 
-        binding.cameraIp.setText("ip地址: " + MainActivity.getSharedPreferences().getString("ipaddress_camera", "请在设置中配置连接参数"));
-        binding.cameraProt.setText("通道号: " + MainActivity.getSharedPreferences().getString("channel_camera", "11"));
+        binding.cameraIp.setText("ip地址: " + kv.decodeString("ipaddress_camera", "请在设置中配置连接参数"));
+        binding.cameraProt.setText("通道号: " + kv.decodeString("channel_camera", "11"));
 
         binding.btCameraconnection.setOnClickListener(view -> {
             binding.status.setStatus(Status.LOADING);
             cameraManager = CameraManager.getInstance();
             cameraManager.setBaseInfo(binding.playerView,
-                    MainActivity.getSharedPreferences().getString("username_camera", "admin"),
-                    MainActivity.getSharedPreferences().getString("password_camera", "admin"),
-                    MainActivity.getSharedPreferences().getString("ipaddress_camera", "192.168.0.1"),
-                    MainActivity.getSharedPreferences().getString("channel_camera", "11"));
-            cameraManager.videoSetting(getContext());
+                            kv.decodeString("username_camera", "admin"),
+                            kv.decodeString("password_camera", "admin"),
+                            kv.decodeString("ipaddress_camera", "192.168.0.1"),
+                            kv.decodeString("channel_camera", "11"))
+                    .videoSetting(XUI.getContext());
             handler.postDelayed(() -> {
                 try {
                     cameraManager.openCamera();

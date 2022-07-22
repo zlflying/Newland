@@ -126,6 +126,7 @@
                     app:rb_backgroundColor="@color/xui_config_color_blue"
                     app:rb_isRadiusAdjustBounds="true" />
 
+
                 <com.xuexiang.xui.widget.button.roundbutton.RoundButton
                     android:id="@+id/bt_right"
                     android:layout_width="70dp"

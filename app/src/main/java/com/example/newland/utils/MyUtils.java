@@ -212,7 +212,7 @@ public class MyUtils {
                         for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                             InetAddress inetAddress = enumIpAddr.nextElement();
                             if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
-                                return inetAddress.getHostAddress()+"(当前不是WiFi连接)";
+                                return inetAddress.getHostAddress() + "(当前不是WiFi连接)";
                             }
                         }
                     }

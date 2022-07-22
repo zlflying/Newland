@@ -6,7 +6,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.newland"
+        applicationId "com.muxmu.newland"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -16,8 +16,12 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
+        }
+
+        ndk {
+            abiFilters "armeabi-v7a"
         }
 
     }
@@ -28,9 +32,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
 
     buildFeatures {
@@ -50,6 +61,9 @@ dependencies {
 
     // xutil
     implementation 'com.github.xuexiangjys.XUtil:xutil-core:2.0.0'
+
+    // 腾讯的键值对存储mmkv
+    implementation 'com.tencent:mmkv:1.2.10'
 
     implementation files('libs/hardware.jar')
     implementation files('libs/ipcamera.jar')

@@ -11,17 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.newland.activity.MainActivity;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentZigbeeBinding;
 import com.example.newland.utils.XToastUtils;
 import com.nle.mylibrary.forUse.zigbee.ZigBee;
 import com.nle.mylibrary.forUse.zigbee.ZigBeeControlListener;
 import com.nle.mylibrary.transfer.DataBusFactory;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
-import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
+import com.xuexiang.xutil.XUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,6 +32,7 @@ import java.util.Objects;
 public class ZigBeeFragment extends BaseFragment {
     private static final String TAG = "ZigBeeFragment";
     FragmentZigbeeBinding binding;
+    private MMKV kv;
     private List<Integer> zigbee_sensor_list = new ArrayList<>();
     private ZigBee zigBee;
     //zigbee传感器数据
@@ -60,6 +61,7 @@ public class ZigBeeFragment extends BaseFragment {
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     protected void initViews() {
+        kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         ArrayList<TextView> textViewArrayList = new ArrayList<>();
         binding.serialPortsZigbee.setSelectedIndex(4);
         binding.selectZigbeeMode.setOnTabSelectionChangedListener((title, value) -> {
@@ -71,16 +73,16 @@ public class ZigBeeFragment extends BaseFragment {
                 binding.btZigbeeconnection.setLabelOrientation(2);
             }
         });
-        binding.zigbeeIp.setText("ip地址: " + MainActivity.getSharedPreferences().getString("ipaddress_zigbee", "请在设置中配置连接参数"));
-        binding.zigbeeProt.setText("端口: " + MainActivity.getSharedPreferences().getInt("port_zigbee", 1000));
+        binding.zigbeeIp.setText("ip地址: " + kv.decodeString("ipaddress_zigbee", "请在设置中配置连接参数"));
+        binding.zigbeeProt.setText("端口: " + kv.decodeInt("port_zigbee", 1000));
 
         binding.flowlayoutZigbeeInfo.setOnTagSelectListener((parent, position, selectedList) -> zigbee_sensor_list = selectedList);
 
         binding.btZigbeeconnection.setOnClickListener(view -> {
             if (zigBee == null) {
                 if (binding.btZigbeeconnection.getLabelText().equals("网络")) {
-                    zigBee = new ZigBee(DataBusFactory.newSocketDataBus(MainActivity.getSharedPreferences().getString("ipaddress_zigbee", "192.168.0.1"),
-                            MainActivity.getSharedPreferences().getInt("port_zigbee", 1000)), b -> {
+                    zigBee = new ZigBee(DataBusFactory.newSocketDataBus(kv.decodeString("ipaddress_zigbee", "192.168.0.1"),
+                            kv.decodeInt("port_zigbee", 1000)), b -> {
                         if (b) {
                             binding.status.setStatus(Status.COMPLETE);
                             binding.btZigbeeconnection.setText("Socket已连接");
@@ -151,7 +153,7 @@ public class ZigBeeFragment extends BaseFragment {
                     }
                 }
 
-                getActivity().runOnUiThread(() -> {
+                XUtil.runOnUiThread(() -> {
                     for (Integer integer : zigbee_sensor_list) {
                         TextView textView = textViewArrayList.get(integer);
                         switch (integer) {

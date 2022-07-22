@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.newland.activity.MainActivity;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentModbus4017Binding;
 import com.example.newland.utils.XToastUtils;
@@ -15,10 +14,12 @@ import com.nle.mylibrary.forUse.mdbus4017.MD4017ValConvert;
 import com.nle.mylibrary.forUse.mdbus4017.MD4017ValListener;
 import com.nle.mylibrary.forUse.mdbus4017.Md4017VIN;
 import com.nle.mylibrary.transfer.DataBusFactory;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
 import com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner;
+import com.xuexiang.xutil.XUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +28,7 @@ import java.util.Collections;
 public class Modbus4017Fragment extends BaseFragment {
     FragmentModbus4017Binding binding;
     private MD4017 md4017;
+    private MMKV kv;
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
@@ -42,6 +44,7 @@ public class Modbus4017Fragment extends BaseFragment {
     @SuppressLint("SetTextI18n")
     @Override
     protected void initViews() {
+        kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         ArrayList<TextView> textViewArrayList = new ArrayList<>();
         ArrayList<MaterialSpinner> materialSpinnerArrayList = new ArrayList<>();
         int[] sensor = new int[8];
@@ -56,15 +59,15 @@ public class Modbus4017Fragment extends BaseFragment {
             }
         });
         Collections.addAll(textViewArrayList, binding.tvVin0, binding.tvVin1, binding.tvVin2, binding.tvVin3, binding.tvVin4, binding.tvVin5, binding.tvVin6, binding.tvVin7);
-        binding.adam4017Ip.setText("ip地址: " + MainActivity.getSharedPreferences().getString("ipaddress_4017", "请在设置中配置连接参数"));
-        binding.adam4017Prot.setText("端口: " + MainActivity.getSharedPreferences().getInt("port_4017", 1000));
+        binding.adam4017Ip.setText("ip地址: " + kv.decodeString("ipaddress_4017", "请在设置中配置连接参数"));
+        binding.adam4017Prot.setText("端口: " + kv.decodeInt("port_4017", 1000));
         Collections.addAll(materialSpinnerArrayList, binding.ms4017Vin0selectSenor, binding.ms4017Vin1selectSenor, binding.ms4017Vin2selectSenor, binding.ms4017Vin3selectSenor,
                 binding.ms4017Vin4selectSenor, binding.ms4017Vin5selectSenor, binding.ms4017Vin6selectSenor, binding.ms4017Vin7selectSenor);
         binding.bt4017connection.setOnClickListener(view -> {
             if (md4017 == null) {
                 if (binding.bt4017connection.getLabelText().equals("网络")) {
-                    md4017 = new MD4017(DataBusFactory.newSocketDataBus(MainActivity.getSharedPreferences().getString("ipaddress_4017", "192.168.0.1"),
-                            MainActivity.getSharedPreferences().getInt("port_4017", 1000)), b -> {
+                    md4017 = new MD4017(DataBusFactory.newSocketDataBus(kv.decodeString("ipaddress_4017", "192.168.0.1"),
+                            kv.decodeInt("port_4017", 1000)), b -> {
                         if (b) {
                             binding.status.setStatus(Status.COMPLETE);
                             binding.bt4017connection.setText("Socket已连接");
@@ -98,8 +101,6 @@ public class Modbus4017Fragment extends BaseFragment {
                 XToastUtils.info("已断开连接");
                 binding.bt4017connection.setText("连接");
             }
-
-
         });
         binding.tvGetvinInfo.setOnClickListener(view -> {
             XToastUtils.info("传感器数值将2秒更新一次");
@@ -120,7 +121,7 @@ public class Modbus4017Fragment extends BaseFragment {
                         for (int i = 0; i < sensor.length; i++) {
                             String senorinfo = get4017Senorinfo(sensor[i], materialSpinnerArrayList.get(i).getSelectedIndex());
                             int finalI = i;
-                            getActivity().runOnUiThread(() -> textViewArrayList.get(finalI).setText(senorinfo));
+                            XUtil.runOnUiThread(() -> textViewArrayList.get(finalI).setText(senorinfo));
                         }
                         Thread.sleep(2000);
                     }

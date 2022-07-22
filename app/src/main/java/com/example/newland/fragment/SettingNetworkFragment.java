@@ -1,7 +1,6 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -9,13 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.newland.R;
-import com.example.newland.activity.MainActivity;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentSettingNetworkBinding;
 import com.example.newland.utils.MyUtils;
 import com.example.newland.utils.XToastUtils;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
-import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.PageOption;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xpage.utils.TitleBar;
@@ -34,8 +32,8 @@ import java.util.Objects;
 @Page(name = "SettingNetwork")
 public class SettingNetworkFragment extends BaseFragment {
     FragmentSettingNetworkBinding binding;
-    private SharedPreferences sharedPreferences;
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
+    private MMKV kv;
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
@@ -58,8 +56,6 @@ public class SettingNetworkFragment extends BaseFragment {
                                         .setNewActivity(false)
                                         .open(SettingNetworkFragment.this); //打开页面进行跳转
                             }, 500);
-                        } else {
-                            XToastUtils.error("保存失败:数据校验不通过");
                         }
                     }
                 });
@@ -68,7 +64,7 @@ public class SettingNetworkFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        sharedPreferences = MainActivity.getSharedPreferences();
+        kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         initLayout();
         initContent();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy", Locale.CHINA);
@@ -89,21 +85,20 @@ public class SettingNetworkFragment extends BaseFragment {
     private void initContent() {
         String simIPAddress = MyUtils.getSimIPAddress(XUI.getContext());
         if (simIPAddress == null) simIPAddress = "192.168.0.1"; //如果当前无网络，则初始化为192.168.0.1
-        binding.ipaddress4150.setText(sharedPreferences.getString("ipaddress_4150", simIPAddress));
-        binding.prot4150.setText(sharedPreferences.getInt("port_4150", 6000) + "");
-        binding.ipaddress4017.setText(sharedPreferences.getString("ipaddress_4017", simIPAddress));
-        binding.prot4017.setText(sharedPreferences.getInt("port_4017", 6000) + "");
-//        address_4017.setText(sharedPreferences.getInt("address_4017", 2) + "");
-        binding.ipaddressZigbee.setText(sharedPreferences.getString("ipaddress_zigbee", simIPAddress));
-        binding.protZigbee.setText(sharedPreferences.getInt("port_zigbee", 6000) + "");
-        binding.ipaddressRfid.setText(sharedPreferences.getString("ipaddress_rfid", simIPAddress));
-        binding.protRfid.setText(sharedPreferences.getInt("port_rfid", 6000) + "");
-        binding.ipaddressLed.setText(sharedPreferences.getString("ipaddress_led", simIPAddress));
-        binding.protLed.setText(sharedPreferences.getInt("port_led", 6000) + "");
-        binding.ipaddressCamera.setText(sharedPreferences.getString("ipaddress_camera", simIPAddress));
-        binding.usernameCamera.setText(sharedPreferences.getString("username_camera", "admin"));
-        binding.passwordCamera.setText(sharedPreferences.getString("password_camera", "admin"));
-        binding.channelCamera.setText(sharedPreferences.getString("channel_camera", "11"));
+        binding.ipaddress4150.setText(kv.decodeString("ipaddress_4150", simIPAddress));
+        binding.prot4150.setText(kv.getInt("port_4150", 6000) + "");
+        binding.ipaddress4017.setText(kv.decodeString("ipaddress_4017", simIPAddress));
+        binding.prot4017.setText(kv.decodeInt("port_4017", 6000) + "");
+        binding.ipaddressZigbee.setText(kv.decodeString("ipaddress_zigbee", simIPAddress));
+        binding.protZigbee.setText(kv.decodeInt("port_zigbee", 6000) + "");
+        binding.ipaddressRfid.setText(kv.decodeString("ipaddress_rfid", simIPAddress));
+        binding.protRfid.setText(kv.decodeInt("port_rfid", 6000) + "");
+        binding.ipaddressLed.setText(kv.decodeString("ipaddress_led", simIPAddress));
+        binding.protLed.setText(kv.decodeInt("port_led", 6000) + "");
+        binding.ipaddressCamera.setText(kv.decodeString("ipaddress_camera", simIPAddress));
+        binding.usernameCamera.setText(kv.decodeString("username_camera", "admin"));
+        binding.passwordCamera.setText(kv.decodeString("password_camera", "admin"));
+        binding.channelCamera.setText(kv.decodeString("channel_camera", "11"));
         CookieBar.builder(getActivity())
                 .setTitle("提示")
                 .setMessage(R.string.cookie_message)
@@ -116,17 +111,13 @@ public class SettingNetworkFragment extends BaseFragment {
 
     /**
      * 保存设置信息内容
-     *
-     * @return isSuccess
      */
-    private Boolean saveContent() {
+    private boolean saveContent() {
         if (getValidate()) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
             String ip_4150 = binding.ipaddress4150.getEditValue();
             int port_4150 = Integer.parseInt(binding.prot4150.getEditValue());
             String ip_4017 = binding.ipaddress4017.getEditValue();
             int port_4017 = Integer.parseInt(binding.prot4017.getEditValue());
-//            int address_4017 = Integer.parseInt(this.address_4017.getEditValue());
             String ipaddress_zigbee = binding.ipaddressZigbee.getEditValue();
             int port_zigbee = Integer.parseInt(binding.protZigbee.getEditValue());
             String ipaddress_rfid = binding.ipaddressRfid.getEditValue();
@@ -138,23 +129,23 @@ public class SettingNetworkFragment extends BaseFragment {
             String password_camera = Objects.requireNonNull(binding.passwordCamera.getText()).toString();
             String channel_camera = binding.channelCamera.getEditValue();
             //保存到偏好文件
-            editor.putString("ipaddress_4150", ip_4150);
-            editor.putInt("port_4150", port_4150);
-            editor.putString("ipaddress_4017", ip_4017);
-            editor.putInt("port_4017", port_4017);
-//            editor.putInt("address_4017", address_4017);
-            editor.putString("ipaddress_zigbee", ipaddress_zigbee);
-            editor.putInt("port_zigbee", port_zigbee);
-            editor.putString("ipaddress_rfid", ipaddress_rfid);
-            editor.putInt("port_rfid", port_rfid);
-            editor.putString("ipaddress_led", ipaddress_led);
-            editor.putInt("port_led", port_led);
-            editor.putString("ipaddress_camera", ipaddress_camera);
-            editor.putString("username_camera", username_camera);
-            editor.putString("password_camera", password_camera);
-            editor.putString("channel_camera", channel_camera);
-            return editor.commit();
+            kv.encode("ipaddress_4150", ip_4150);
+            kv.encode("port_4150", port_4150);
+            kv.encode("ipaddress_4017", ip_4017);
+            kv.encode("port_4017", port_4017);
+            kv.encode("ipaddress_zigbee", ipaddress_zigbee);
+            kv.encode("port_zigbee", port_zigbee);
+            kv.encode("ipaddress_rfid", ipaddress_rfid);
+            kv.encode("port_rfid", port_rfid);
+            kv.encode("ipaddress_led", ipaddress_led);
+            kv.encode("port_led", port_led);
+            kv.encode("ipaddress_camera", ipaddress_camera);
+            kv.encode("username_camera", username_camera);
+            kv.encode("password_camera", password_camera);
+            kv.encode("channel_camera", channel_camera);
+            return true;
         } else {
+            XToastUtils.error("数据效验未通过！");
             return false;
         }
     }
