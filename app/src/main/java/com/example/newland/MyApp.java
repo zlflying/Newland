@@ -18,7 +18,7 @@ public class MyApp extends Application {
                 .init(this);            //初始化页面配置
 
         String rootDir = MMKV.initialize(this);
-        System.out.println("mmkv root: " + rootDir);
+        System.out.println("MMKV root: " + rootDir);
 
     }
 

@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/zl/.gradle/caches/transforms-3/e8fba74f144b9360e574cc5a788dff98/transformed/jetified-XUI-1.1.9/res/drawable-v21/xui_config_bg_splash.xml" value="0.172" />
+        <entry key="..\:/Users/zl/.gradle/caches/transforms-3/e8fba74f144b9360e574cc5a788dff98/transformed/jetified-XUI-1.1.9/res/drawable/xui_config_bg_splash.xml" value="0.172" />
         <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/drawable/bg_rect_round_tag_btn.xml" value="0.186" />
         <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/drawable/bg_tab_panel.xml" value="0.1725" />
         <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/drawable/ic_check_circle_white_24dp.xml" value="0.179" />
+        <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/drawable/ic_iot_logo.xml" value="0.1845" />
+        <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1845" />
+        <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/drawable/newland_config_bg_splash.xml" value="0.172" />
         <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/layout/dialog_drawable_utils_createfromview.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/layout/fragment_camera.xml" value="0.340625" />

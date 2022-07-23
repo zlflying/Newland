@@ -17,12 +17,13 @@ import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.utils.DensityUtils;
 import com.xuexiang.xui.utils.SnackbarUtils;
 import com.xuexiang.xui.widget.tabbar.TabSegment;
+import com.xuexiang.xutil.XUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Page
+@Page(name = "NavigationView", anim = CoreAnim.fade)
 public class NavigationViewFragment extends BaseFragment implements TabSegment.OnTabSelectedListener {
 
     FragmentNavigationViewBinding binding;
@@ -43,7 +44,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
         TitleBar titleBar = super.initTitleBar();
         titleBar.setTitle("NewLand测试")
                 .setLeftClickListener(view -> {
-
+                    XUtil.exitApp();
                 })
                 .addAction(new TitleBar.TextAction("设置网络参数") {
                     @Override
