@@ -63,10 +63,10 @@ public class FirstpageFragment extends BaseFragment {
 //            }
 //        });
 
-        binding.copyToken.setOnClickListener(view -> {
-            String token_str = binding.token.getText().toString().trim();
-            MyUtils.sendClipboard(XUI.getContext(), "token", token_str);
-        });
+//        binding.copyToken.setOnClickListener(view -> {
+//            String token_str = binding.token.getText().toString().trim();
+//            MyUtils.sendClipboard(XUI.getContext(), "token", token_str);
+//        });
     }
 
     /**

@@ -29,11 +29,9 @@ public class BaseActivity extends XPageActivity {
     private void initAppTheme() {
         XUI.initFontStyle("fonts/MiSans-Regular.ttf");
         XUI.initTheme(this);
-        if (XUI.isTablet()) {
-            ScreenUtils.setLandscape(this);
-        } else {
-            ScreenUtils.setPortrait(this);
-        }
+
+        ScreenUtils.setPortrait(this);
+
     }
 
 

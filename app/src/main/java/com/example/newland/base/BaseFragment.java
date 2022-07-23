@@ -31,4 +31,5 @@ public class BaseFragment extends XPageFragment {
     protected void initListeners() {
 
     }
+
 }

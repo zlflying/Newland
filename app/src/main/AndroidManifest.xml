@@ -23,16 +23,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Newland"
         tools:targetApi="31">
-
         <activity
-            android:name=".activity.MainActivity"
-            android:exported="true">
+            android:name=".activity.SplashActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
+            android:exported="true"
+            android:theme="@style/XUITheme.Launch.newland"
+            android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true" />
+
+        <receiver
+            android:name=".receiver.NetWorkStateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action
+                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+            </intent-filter>
+        </receiver>
+
     </application>
+
 
 </manifest>

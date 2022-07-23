@@ -3,6 +3,7 @@ package com.example.newland.fragment;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,12 @@ import com.xuexiang.xpage.core.PageOption;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.XUI;
+import com.xuexiang.xui.utils.WidgetUtils;
+import com.xuexiang.xui.widget.dialog.MiniLoadingDialog;
 import com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText;
 import com.xuexiang.xui.widget.layout.XUILinearLayout;
 import com.xuexiang.xui.widget.popupwindow.bar.CookieBar;
+import com.xuexiang.xutil.XUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +38,7 @@ public class SettingNetworkFragment extends BaseFragment {
     FragmentSettingNetworkBinding binding;
     private final Handler handler = new Handler();
     private MMKV kv;
+    private MiniLoadingDialog miniLoadingDialog;
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
@@ -51,10 +56,7 @@ public class SettingNetworkFragment extends BaseFragment {
                     public void performAction(View view) {
                         if (saveContent()) {
                             handler.postDelayed(() -> {
-                                PageOption.to(NavigationViewFragment.class) //跳转的fragment
-                                        .setAnim(CoreAnim.fade) //页面转场动画
-                                        .setNewActivity(false)
-                                        .open(SettingNetworkFragment.this); //打开页面进行跳转
+                                popToBack();
                             }, 500);
                         }
                     }
@@ -114,6 +116,9 @@ public class SettingNetworkFragment extends BaseFragment {
      */
     private boolean saveContent() {
         if (getValidate()) {
+            miniLoadingDialog = WidgetUtils.getMiniLoadingDialog(getAttachContext());
+            miniLoadingDialog.updateMessage("保存中");
+            XUtil.runOnUiThread(miniLoadingDialog::show);
             String ip_4150 = binding.ipaddress4150.getEditValue();
             int port_4150 = Integer.parseInt(binding.prot4150.getEditValue());
             String ip_4017 = binding.ipaddress4017.getEditValue();
@@ -181,4 +186,10 @@ public class SettingNetworkFragment extends BaseFragment {
         }
     }
 
+
+    @Override
+    public void onDestroyView() {
+        miniLoadingDialog.dismiss();
+        super.onDestroyView();
+    }
 }
