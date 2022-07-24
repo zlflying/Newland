@@ -1,14 +1,18 @@
 package com.example.newland.base;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.newland.receiver.NetWorkStateReceiver;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xutil.common.ClickUtils;
 
 public class BaseFragment extends XPageFragment {
+
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
         return null;
@@ -31,5 +35,8 @@ public class BaseFragment extends XPageFragment {
     protected void initListeners() {
 
     }
+
+
+
 
 }

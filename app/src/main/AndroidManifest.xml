@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.newland">
+    package="com.example.newland"
+    tools:ignore="CoarseFineLocation">
 
     <!--获取振动器权限-->
     <uses-permission android:name="android.permission.VIBRATE" />
     <!--获取网络状态权限-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--访问位置权限-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!--获取WiFi状态权限-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--更改wifi状态权限-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!--获取网络权限，上网-->
     <uses-permission android:name="android.permission.INTERNET" />
 

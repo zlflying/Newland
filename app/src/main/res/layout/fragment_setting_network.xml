@@ -453,6 +453,16 @@
                 <!--led-->
             </com.xuexiang.xui.widget.layout.XUILinearLayout>
 
+            <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                android:id="@+id/clear_all_info"
+                style="@style/RoundButton.Blue"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:text="重置所有信息"
+                android:textSize="15sp"
+                app:rb_isRadiusAdjustBounds="true" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -460,6 +470,7 @@
                 android:gravity="center"
                 android:text="~暂无其他设备~"
                 android:textSize="15sp" />
+
 
             <TextView
                 android:id="@+id/app_about_info"

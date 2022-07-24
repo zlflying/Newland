@@ -25,8 +25,8 @@ public class MyApp extends Application {
         System.out.println("MMKV root: " + rootDir);
 
         registerReceiver();
-
     }
+
 
     @Override
     public void onTerminate() {
@@ -58,5 +58,7 @@ public class MyApp extends Application {
             netStateReceiver.setMyListener(myListener);
         }
     }
+
+
 
 }

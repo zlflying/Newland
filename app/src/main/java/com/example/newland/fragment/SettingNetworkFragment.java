@@ -56,7 +56,10 @@ public class SettingNetworkFragment extends BaseFragment {
                     public void performAction(View view) {
                         if (saveContent()) {
                             handler.postDelayed(() -> {
-                                popToBack();
+                                PageOption.to(NavigationViewFragment.class)
+                                        .setAnim(CoreAnim.fade)
+                                        .open(SettingNetworkFragment.this);
+                                onDestroyView();
                             }, 500);
                         }
                     }
@@ -76,7 +79,10 @@ public class SettingNetworkFragment extends BaseFragment {
 
     @Override
     protected void initListeners() {
-
+        binding.clearAllInfo.setOnClickListener(view -> {
+            kv.clearAll();
+            initContent();
+        });
     }
 
 

@@ -9,6 +9,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.newland.fragment.NavigationViewFragment;
 import com.xuexiang.xpage.base.XPageActivity;
+import com.xuexiang.xpage.core.PageOption;
+import com.xuexiang.xpage.enums.CoreAnim;
 
 import java.util.Arrays;
 
@@ -25,10 +27,15 @@ public class MainActivity extends XPageActivity {
                         Manifest.permission.INTERNET,
                         Manifest.permission.ACCESS_NETWORK_STATE,
                         Manifest.permission.ACCESS_WIFI_STATE,
+                        Manifest.permission.CHANGE_WIFI_STATE,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.VIBRATE
                 }, 5);
 
-        openPage(NavigationViewFragment.class);
+        PageOption.to(NavigationViewFragment.class)
+                .setAnim(CoreAnim.fade)
+                .open(this);
+//        openPage(NavigationViewFragment.class);
     }
 
     @Override

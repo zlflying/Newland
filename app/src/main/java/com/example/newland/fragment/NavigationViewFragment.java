@@ -50,8 +50,9 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
                     @Override
                     public void performAction(View view) {
                         PageOption.to(SettingNetworkFragment.class)
-                                .setAnim(CoreAnim.slide)
+                                .setAnim(CoreAnim.fade)
                                 .open(NavigationViewFragment.this);
+                        onDestroyView();
                     }
                 });
         return titleBar;
@@ -84,7 +85,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
     private void initTabLayout() {
         mAdapter = new FragmentCacheAdapter(getChildFragmentManager());
         binding.contentViewPager.setAdapter(mAdapter);
-        binding.contentViewPager.setCurrentItem(mDestPage.getPosition(), false);
+        binding.contentViewPager.setCurrentItem(mDestPage.getPosition(), true);
         // 设置缓存的数量
         binding.contentViewPager.setOffscreenPageLimit(TAB_COUNT);
 
