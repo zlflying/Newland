@@ -1,5 +1,6 @@
 package com.example.newland.fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
     @Override
     protected TitleBar initTitleBar() {
         TitleBar titleBar = super.initTitleBar();
-        titleBar.setTitle("NewLand测试")
+        titleBar.setTitle("NewLand", "测试设备", TitleBar.CENTER_LEFT)
                 .setLeftClickListener(view -> {
                     XUtil.exitApp();
                 })

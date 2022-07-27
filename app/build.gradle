@@ -9,8 +9,8 @@ android {
         applicationId "com.muxmu.newland"
         minSdk 21
         targetSdk 32
-        versionCode 6
-        versionName "2.1.1"
+        versionCode 7
+        versionName "2.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -64,8 +64,6 @@ dependencies {
 
     // 腾讯的键值对存储mmkv
     implementation 'com.tencent:mmkv:1.2.10'
-
-//    compile 'site.gemus:openingstartanimation:1.0.0' //在gradle中导入项目
 
     implementation files('libs/hardware.jar')
     implementation files('libs/ipcamera.jar')

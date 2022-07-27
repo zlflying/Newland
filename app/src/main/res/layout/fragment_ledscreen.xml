@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <com.xuexiang.xui.widget.popupwindow.status.StatusView
         android:id="@+id/status"
         style="@style/StatusView.Custom"
@@ -60,6 +61,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:enabled="true"
+                android:textSize="15sp"
                 app:ms_entries="@array/serial_ports" />
 
         </LinearLayout>
@@ -83,12 +85,14 @@
         <com.xuexiang.xui.widget.tabbar.TabControlView
             android:id="@+id/select_led_mode"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
             app:tcv_defaultSelection="0"
             app:tcv_equalWidth="true"
             app:tcv_items="@array/serial_socket"
+            app:tcv_strokeWidth="2dp"
+            app:tcv_textSize="15sp"
             app:tcv_values="@array/mode_led_val" />
 
 
@@ -100,6 +104,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="@string/con_text"
+            android:textSize="15sp"
             app:label_backgroundColor="#C2185B"
             app:label_distance="15dp"
             app:label_height="18dp"

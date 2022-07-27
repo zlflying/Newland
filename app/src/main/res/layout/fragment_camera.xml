@@ -126,6 +126,15 @@
                     app:rb_backgroundColor="@color/xui_config_color_blue"
                     app:rb_isRadiusAdjustBounds="true" />
 
+                <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                    android:id="@+id/bt_capture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="截图"
+                    app:rb_backgroundColor="@color/xui_config_color_blue"
+                    app:rb_isRadiusAdjustBounds="true" />
+
 
                 <com.xuexiang.xui.widget.button.roundbutton.RoundButton
                     android:id="@+id/bt_right"

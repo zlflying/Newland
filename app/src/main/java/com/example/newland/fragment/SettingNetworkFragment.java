@@ -49,8 +49,12 @@ public class SettingNetworkFragment extends BaseFragment {
     @Override
     protected TitleBar initTitleBar() {
         TitleBar titleBar = super.initTitleBar();
-        titleBar.setTitle("设置网络参数")
-                .setLeftClickListener(view -> popToBack())
+        titleBar.setTitle("设置网络参数", "请填写网络设备参数", TitleBar.CENTER_LEFT)
+                .setLeftClickListener(view -> {
+                    PageOption.to(NavigationViewFragment.class)
+                            .setAnim(CoreAnim.fade)
+                            .open(SettingNetworkFragment.this);
+                })
                 .addAction(new TitleBar.TextAction("保存") {
                     @Override
                     public void performAction(View view) {
@@ -82,6 +86,14 @@ public class SettingNetworkFragment extends BaseFragment {
         binding.clearAllInfo.setOnClickListener(view -> {
             kv.clearAll();
             initContent();
+            CookieBar.builder(getActivity())
+                    .setTitle("提示")
+                    .setMessage(R.string.cookie_message)
+                    .setDuration(1200)
+                    .setBackgroundColor(R.color.tips)
+                    .setActionColor(android.R.color.white)
+                    .setTitleColor(android.R.color.white)
+                    .show();
         });
     }
 
@@ -107,14 +119,6 @@ public class SettingNetworkFragment extends BaseFragment {
         binding.usernameCamera.setText(kv.decodeString("username_camera", "admin"));
         binding.passwordCamera.setText(kv.decodeString("password_camera", "admin"));
         binding.channelCamera.setText(kv.decodeString("channel_camera", "11"));
-        CookieBar.builder(getActivity())
-                .setTitle("提示")
-                .setMessage(R.string.cookie_message)
-                .setDuration(1200)
-                .setBackgroundColor(R.color.tips)
-                .setActionColor(android.R.color.white)
-                .setTitleColor(android.R.color.white)
-                .show();
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Environment;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -64,7 +65,9 @@ public class CameraFragment extends BaseFragment {
                 }
             }, 2000);
         });
+
     }
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -72,6 +75,15 @@ public class CameraFragment extends BaseFragment {
         binding.status.setOnCompleteClickListener(v -> binding.status.dismiss());
         binding.status.setOnErrorClickListener(v -> binding.status.dismiss());
         binding.status.setOnLoadingClickListener(v -> binding.status.dismiss());
+        binding.btCapture.setOnClickListener(view -> {
+            try {
+                String fileData = Environment.getExternalStorageDirectory().getAbsolutePath();
+                String fileName = System.currentTimeMillis() + ".png";
+                cameraManager.capture(fileData, fileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         binding.btUp.setOnTouchListener((v1, event) -> {
             try {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {

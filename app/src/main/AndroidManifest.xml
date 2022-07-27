@@ -9,13 +9,21 @@
     <!--获取网络状态权限-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!--访问位置权限-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!--获取WiFi状态权限-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--更改wifi状态权限-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!--获取网络权限，上网-->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--读取权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--写入权限-->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
 
     <application
         android:name=".MyApp"
@@ -32,6 +40,7 @@
             android:name=".activity.SplashActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/XUITheme.Launch.newland"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
