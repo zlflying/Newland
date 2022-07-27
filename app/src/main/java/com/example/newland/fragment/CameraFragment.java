@@ -1,12 +1,15 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
-import android.os.Environment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentCameraBinding;
@@ -17,7 +20,11 @@ import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.XUI;
+import com.xuexiang.xui.utils.SnackbarUtils;
+import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
+
+import java.io.File;
 
 @Page(name = "Camera")
 public class CameraFragment extends BaseFragment {
@@ -77,9 +84,31 @@ public class CameraFragment extends BaseFragment {
         binding.status.setOnLoadingClickListener(v -> binding.status.dismiss());
         binding.btCapture.setOnClickListener(view -> {
             try {
-                String fileData = Environment.getExternalStorageDirectory().getAbsolutePath();
+                String fileData = requireContext().getExternalCacheDir().getAbsolutePath();
                 String fileName = System.currentTimeMillis() + ".png";
                 cameraManager.capture(fileData, fileName);
+                XToastUtils.info("截图生成中请等待!");
+                handler.postDelayed(() -> {
+                    Bitmap bitmap = BitmapFactory.decodeFile(fileData + "/" + fileName);
+                    ImageView imageView = new ImageView(getContext());
+                    imageView.setImageBitmap(bitmap);
+                    MaterialDialog dialog = new MaterialDialog.Builder(requireContext())
+                            .customView(imageView, true)
+                            .title("截图结果")
+                            .positiveText("删除图片")
+                            .onPositive((dialog1, which) -> {
+                                dialog1.dismiss();
+                                File file = new File(fileData + "/" + fileName);
+                                if (file.delete()) {
+                                    XToastUtils.success("图片已删除");
+                                } else {
+                                    XToastUtils.error("删除失败");
+                                }
+                            })
+                            .build();
+                    dialog.setCancelable(false);
+                    dialog.show();
+                }, 2000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
