@@ -162,4 +162,10 @@ public class CameraFragment extends BaseFragment {
             return true;
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        cameraManager.releaseCamera();
+    }
 }

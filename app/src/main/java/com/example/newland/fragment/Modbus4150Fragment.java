@@ -224,4 +224,10 @@ public class Modbus4150Fragment extends BaseFragment {
             }
         };
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        modbus4150.stopConnect();
+    }
 }

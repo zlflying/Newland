@@ -264,4 +264,11 @@ public class ZigBeeFragment extends BaseFragment {
             }
         };
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        zigBee.stopConnect();
+    }
+
 }

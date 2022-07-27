@@ -58,7 +58,4 @@ public class MyApp extends Application {
             netStateReceiver.setMyListener(myListener);
         }
     }
-
-
-
 }

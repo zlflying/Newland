@@ -192,4 +192,10 @@ public class Modbus4017Fragment extends BaseFragment {
         return data;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        md4017.stopConnect();
+    }
+
 }

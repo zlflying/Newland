@@ -146,4 +146,10 @@ public class RFIDFragment extends BaseFragment {
         binding.status.setOnErrorClickListener(v -> binding.status.dismiss());
         binding.status.setOnLoadingClickListener(v -> binding.status.dismiss());
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        rfid.stopConnect();
+    }
+
 }
