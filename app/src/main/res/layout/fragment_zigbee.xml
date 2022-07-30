@@ -394,14 +394,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
 
                 <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
                     android:id="@+id/ed_CtrlDoubleRelay"
                     android:layout_width="170sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="10sp"
                     android:hint="@string/input_double_relay_num"
                     android:textSize="15sp"
                     app:met_allowEmpty="false"
@@ -428,14 +430,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="100dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="100dp"
+                android:gravity="center">
+
 
                 <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
                     android:id="@+id/ed_CtrlSingleRelay"
                     android:layout_width="170sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="10sp"
                     android:hint="@string/input_single_relay_num"
                     android:textSize="15sp"
                     app:met_allowEmpty="false"

@@ -195,7 +195,9 @@ public class Modbus4017Fragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        md4017.stopConnect();
+        if (md4017 != null) {
+            md4017.stopConnect();
+        }
     }
 
 }

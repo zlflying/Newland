@@ -3,8 +3,6 @@ package com.example.newland.fragment;
 import static java.lang.String.format;
 
 import android.annotation.SuppressLint;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -197,39 +195,6 @@ public class ZigBeeFragment extends BaseFragment {
         }).start());
 
 
-        binding.edCtrlDoubleRelay.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                binding.swDoubleRelay.setEnabled(binding.edCtrlDoubleRelay.validate());
-            }
-        });
-        binding.edCtrlSingleRelay.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                binding.swSingleRelay.setEnabled(binding.edCtrlSingleRelay.validate());
-            }
-        });
-
         binding.swDoubleRelay.setOnCheckedChangeListener((compoundButton, b) -> {
             try {
                 zigBee.ctrlDoubleRelay(Integer.parseInt(Objects.requireNonNull(binding.edCtrlDoubleRelay.getText()).toString()), 1, b, zigBeeControlListener);
@@ -268,7 +233,9 @@ public class ZigBeeFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        zigBee.stopConnect();
+        if (zigBee != null) {
+            zigBee.stopConnect();
+        }
     }
 
 }

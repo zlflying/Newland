@@ -31,6 +31,7 @@ public class SplashActivity extends BaseSplashActivity {
         finish();
     }
 
+
     /**
      * 菜单、返回键响应
      */

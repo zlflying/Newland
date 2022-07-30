@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,7 +19,6 @@ import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.XUI;
-import com.xuexiang.xui.utils.SnackbarUtils;
 import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
 
@@ -166,6 +164,8 @@ public class CameraFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        cameraManager.releaseCamera();
+        if (cameraManager != null) {
+            cameraManager.releaseCamera();
+        }
     }
 }

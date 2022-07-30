@@ -155,6 +155,8 @@ public class LedScreenFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ledScreen.stopConnect();
+        if (ledScreen != null) {
+            ledScreen.stopConnect();
+        }
     }
 }

@@ -32,6 +32,7 @@ public class BaseActivity extends XPageActivity {
 
         ScreenUtils.setPortrait(this);
 
+
     }
 
 

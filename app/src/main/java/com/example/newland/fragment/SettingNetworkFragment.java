@@ -3,7 +3,6 @@ package com.example.newland.fragment;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,7 @@ import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.dialog.MiniLoadingDialog;
+import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText;
 import com.xuexiang.xui.widget.layout.XUILinearLayout;
 import com.xuexiang.xui.widget.popupwindow.bar.CookieBar;
@@ -33,7 +33,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-@Page(name = "SettingNetwork")
+@Page(name = "SettingNetwork", anim = CoreAnim.fade)
 public class SettingNetworkFragment extends BaseFragment {
     FragmentSettingNetworkBinding binding;
     private final Handler handler = new Handler();
@@ -51,9 +51,35 @@ public class SettingNetworkFragment extends BaseFragment {
         TitleBar titleBar = super.initTitleBar();
         titleBar.setTitle("设置网络参数", "请填写网络设备参数", TitleBar.CENTER_LEFT)
                 .setLeftClickListener(view -> {
-                    PageOption.to(NavigationViewFragment.class)
-                            .setAnim(CoreAnim.fade)
-                            .open(SettingNetworkFragment.this);
+                    if (kv.count() == 0) {
+                        new MaterialDialog.Builder(getContext())
+                                .iconRes(R.mipmap.ic_launcher_round)
+                                .title(R.string.tip_infos)
+                                .content("是否保存修改")
+                                .positiveText("是")
+                                .onPositive((dialog, which) -> {
+                                    if (saveContent()) {
+                                        dialog.dismiss();
+                                        handler.postDelayed(() -> {
+                                            PageOption.to(NavigationViewFragment.class)
+                                                    .setAnim(CoreAnim.fade)
+                                                    .open(SettingNetworkFragment.this);
+                                            onDestroyView();
+                                        }, 500);
+                                    }
+                                })
+                                .negativeText("否")
+                                .onNegative((dialog, which) -> {
+                                    PageOption.to(NavigationViewFragment.class)
+                                            .setAnim(CoreAnim.fade)
+                                            .open(SettingNetworkFragment.this);
+                                })
+                                .show();
+                    } else {
+                        PageOption.to(NavigationViewFragment.class)
+                                .setAnim(CoreAnim.fade)
+                                .open(SettingNetworkFragment.this);
+                    }
                 })
                 .addAction(new TitleBar.TextAction("保存") {
                     @Override
@@ -110,7 +136,7 @@ public class SettingNetworkFragment extends BaseFragment {
         binding.ipaddress4017.setText(kv.decodeString("ipaddress_4017", simIPAddress));
         binding.prot4017.setText(kv.decodeInt("port_4017", 6000) + "");
         binding.ipaddressZigbee.setText(kv.decodeString("ipaddress_zigbee", simIPAddress));
-        binding.protZigbee.setText(kv.decodeInt("port_zigbee", 6000) + "");
+        binding.protZigbee.setText(kv.decodeInt("port_zigbee", 6000)+"");
         binding.ipaddressRfid.setText(kv.decodeString("ipaddress_rfid", simIPAddress));
         binding.protRfid.setText(kv.decodeInt("port_rfid", 6000) + "");
         binding.ipaddressLed.setText(kv.decodeString("ipaddress_led", simIPAddress));
@@ -189,7 +215,7 @@ public class SettingNetworkFragment extends BaseFragment {
         Collections.addAll(xuiLinearLayouts, binding.xuiLayout1, binding.xuiLayout2, binding.xuiLayout3, binding.xuiLayout4, binding.xuiLayout5, binding.xuiLayout6);
         for (XUILinearLayout xuiLinearLayout : xuiLinearLayouts) {
             xuiLinearLayout.setRadius(40);
-            xuiLinearLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+            xuiLinearLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
             xuiLinearLayout.setShadowColor(R.color.selector_tag_color);
             xuiLinearLayout.setAlpha(0.75F);
             xuiLinearLayout.setElevation(11);
