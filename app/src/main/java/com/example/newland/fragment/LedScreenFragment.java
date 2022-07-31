@@ -42,7 +42,6 @@ public class LedScreenFragment extends BaseFragment {
     @Override
     protected void initViews() {
         kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
-        binding.serialPortsLed.setSelectedIndex(4);
         binding.selectLedMode.setOnTabSelectionChangedListener((title, value) -> {
             if (value.equals("9")) {
                 binding.btLedconnection.setLabelText("网络");
@@ -101,10 +100,6 @@ public class LedScreenFragment extends BaseFragment {
                         }
                     });
                 } else {
-                    if (binding.serialPortsLed.getSelectedIndex() == 4) {
-                        XToastUtils.error("请选择串口");
-                        return;
-                    }
                     ledScreen = new LedScreen(DataBusFactory.newSerialDataBus(binding.serialPortsLed.getSelectedIndex(), 9600),
                             b -> {
                                 if (b) {

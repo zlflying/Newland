@@ -8,6 +8,7 @@ import com.example.newland.adapter.FragmentCacheAdapter;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentNavigationViewBinding;
 import com.example.newland.utils.MultiPage;
+import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.PageOption;
@@ -32,6 +33,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
     String[] pages = MultiPage.getPageNames();
     private int TAB_COUNT = MultiPage.size();
     private MultiPage mDestPage = MultiPage.首页;
+    private MMKV kv;
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
@@ -60,6 +62,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
 
     @Override
     protected void initViews() {
+        kv = MMKV.mmkvWithID("AppInfo", MMKV.SINGLE_PROCESS_MODE);
         initTabLayout();
         initTabFragment();
     }
@@ -75,6 +78,9 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
                 new RFIDFragment(),
                 new LedScreenFragment(),
                 new CameraFragment());
+        if (XUI.isTablet()) {
+            fragmentList.add(new SerialPortFragment());
+        }
         for (int i = 0; i < fragmentList.size(); i++) {
             mAdapter.addFragment(fragmentList.get(i), pages[i]);
         }
@@ -85,7 +91,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
     private void initTabLayout() {
         mAdapter = new FragmentCacheAdapter(getChildFragmentManager());
         binding.contentViewPager.setAdapter(mAdapter);
-        binding.contentViewPager.setCurrentItem(mDestPage.getPosition(), true);
+        binding.contentViewPager.setCurrentItem(kv.decodeInt("page_open", mDestPage.getPosition()), true);
         // 设置缓存的数量
         binding.contentViewPager.setOffscreenPageLimit(TAB_COUNT);
 
@@ -106,6 +112,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
 
     @Override
     public void onTabSelected(int index) {
+        kv.encode("page_open", index);
         SnackbarUtils.Short(getView(), "选择: " + pages[index]).info().show();
     }
 
@@ -122,5 +129,10 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
     @Override
     public void onDoubleTap(int index) {
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

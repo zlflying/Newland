@@ -68,11 +68,10 @@
     </string-array>
 
     <string-array name="serial_ports" tools:ignore="InconsistentArrays">
+        <item>COM0</item>
         <item>COM1</item>
         <item>COM2</item>
         <item>COM3</item>
-        <item>COM4</item>
-        <item>NONE</item>
     </string-array>
 
     <string-array name="serial_socket">
@@ -100,13 +99,41 @@
         <item>9</item>
         <item>10</item>
     </string-array>
-    <string-array name="double_relay_val" >
+    <string-array name="double_relay_val">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+    <!--    波特率-->
+    <string-array name="ports_baudrate">
+        <item>100</item>
+        <item>300</item>
+        <item>600</item>
+        <item>1200</item>
+        <item>2400</item>
+        <item>4800</item>
+        <item>9600</item>
+        <item>14400</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>56000</item>
+        <item>57600</item>
+        <item>115200</item>
+        <item>128000</item>
+        <item>230400</item>
+        <item>256000</item>
+        <item>460800</item>
+        <item>921600</item>
+        <item>1000000</item>
+        <item>2000000</item>
+    </string-array>
+    <!--    串口模式-->
+    <string-array name="serial_mode">
+        <item>ASCII</item>
+        <item>HEX</item>
     </string-array>
 
 </resources>

@@ -57,6 +57,7 @@ dependencies {
 
     // XPage
     implementation 'com.github.xuexiangjys.XPage:xpage-lib:3.3.0'
+    implementation files('libs\\ioSerialPort.jar')
     annotationProcessor 'com.github.xuexiangjys.XPage:xpage-compiler:3.3.0'
 
     // xutil

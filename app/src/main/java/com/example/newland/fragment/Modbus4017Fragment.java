@@ -48,7 +48,6 @@ public class Modbus4017Fragment extends BaseFragment {
         ArrayList<TextView> textViewArrayList = new ArrayList<>();
         ArrayList<MaterialSpinner> materialSpinnerArrayList = new ArrayList<>();
         int[] sensor = new int[8];
-        binding.serialPorts4017.setSelectedIndex(4);
         binding.select4017Mode.setOnTabSelectionChangedListener((title, value) -> {
             if (value.equals("3")) {
                 binding.bt4017connection.setLabelText("网络");
@@ -78,10 +77,6 @@ public class Modbus4017Fragment extends BaseFragment {
                         }
                     });
                 } else {
-                    if (binding.serialPorts4017.getSelectedIndex() == 4) {
-                        XToastUtils.error("请选择串口");
-                        return;
-                    }
                     md4017 = new MD4017(DataBusFactory.newSerialDataBus(binding.serialPorts4017.getSelectedIndex(), 9600),
                             b -> {
                                 if (b) {

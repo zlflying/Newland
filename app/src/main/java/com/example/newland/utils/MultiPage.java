@@ -8,7 +8,8 @@ public enum MultiPage {
     ZigBee(3),
     RFID(4),
     LedScreen(5),
-    Camera(6);
+    Camera(6),
+    SerialPort(7);
 
     private final int position;
 

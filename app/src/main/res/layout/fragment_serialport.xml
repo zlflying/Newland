@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.SerialPortFragment">
+
+    <com.xuexiang.xui.widget.popupwindow.status.StatusView
+        android:id="@+id/status"
+        style="@style/StatusView.Custom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="串口调试"
+        android:textColor="#3E99D2"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:text="请选择串口" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:text="请选择波特率" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+            android:id="@+id/serial_ports"
+            style="@style/Material.SpinnerStyle"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:enabled="true"
+            android:textSize="15sp"
+            app:ms_entries="@array/serial_ports" />
+
+        <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+            android:id="@+id/port_baudrate"
+            style="@style/Material.SpinnerStyle"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:enabled="true"
+            android:textSize="15sp"
+            app:ms_entries="@array/ports_baudrate" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="接收设置"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal">
+
+        <com.xuexiang.xui.widget.tabbar.TabControlView
+            android:id="@+id/select_serial_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:tcv_defaultSelection="0"
+            app:tcv_equalWidth="true"
+            app:tcv_items="@array/serial_mode"
+            app:tcv_strokeWidth="2dp"
+            app:tcv_textSize="15sp"
+            app:tcv_values="@array/mode_4150_val" />
+
+        <com.xuexiang.xui.widget.textview.label.LabelButtonView
+            android:id="@+id/bt_serialportconnection"
+            style="@style/Button.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="打开"
+            android:textSize="15sp"
+            app:label_backgroundColor="#C2185B"
+            app:label_distance="15dp"
+            app:label_height="18dp"
+            app:label_orientation="RIGHT_TOP"
+            app:label_text="串口"
+            app:label_textSize="10sp" />
+    </LinearLayout>
+
+
+<!--    <com.xuexiang.xui.widget.flowlayout.FlowLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="10dp">-->
+
+<!--    </com.xuexiang.xui.widget.flowlayout.FlowLayout>-->
+
+    <com.xuexiang.xui.widget.textview.LoggerTextView
+        android:id="@+id/logger"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

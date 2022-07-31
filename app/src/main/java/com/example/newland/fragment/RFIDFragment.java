@@ -40,7 +40,6 @@ public class RFIDFragment extends BaseFragment {
     protected void initViews() {
         kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         CountDownButtonHelper countDownButtonHelper = new CountDownButtonHelper(binding.btReadLoop, 9);
-        binding.serialPortsRfid.setSelectedIndex(4);
         binding.selectRfidMode.setOnTabSelectionChangedListener((title, value) -> {
             if (value.equals("7")) {
                 binding.btRfidconnection.setLabelText("网络");
@@ -67,10 +66,6 @@ public class RFIDFragment extends BaseFragment {
                         }
                     });
                 } else {
-                    if (binding.serialPortsRfid.getSelectedIndex() == 4) {
-                        XToastUtils.error("请选择串口");
-                        return;
-                    }
                     rfid = new RFID(DataBusFactory.newSerialDataBus(binding.serialPortsRfid.getSelectedIndex(), 115200),
                             b -> {
                                 if (b) {

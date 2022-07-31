@@ -50,7 +50,6 @@ public class Modbus4150Fragment extends BaseFragment {
     protected void initViews() {
         kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         binding.flowlayout4150DO.clearSelection();
-        binding.serialPorts4150.setSelectedIndex(4);
         binding.select4150Mode.setOnTabSelectionChangedListener((title, value) -> {
             if (value.equals("1")) {
                 binding.bt4150connection.setLabelText("网络");
@@ -123,10 +122,6 @@ public class Modbus4150Fragment extends BaseFragment {
                         }
                     });
                 } else {
-                    if (binding.serialPorts4150.getSelectedIndex() == 4) {
-                        XToastUtils.error("请选择串口");
-                        return;
-                    }
                     modbus4150 = new Modbus4150(DataBusFactory.newSerialDataBus(binding.serialPorts4150.getSelectedIndex(), 9600), b -> {
                         if (b) {
                             binding.status.setStatus(Status.COMPLETE);

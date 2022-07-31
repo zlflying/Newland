@@ -61,7 +61,6 @@ public class ZigBeeFragment extends BaseFragment {
     protected void initViews() {
         kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
         ArrayList<TextView> textViewArrayList = new ArrayList<>();
-        binding.serialPortsZigbee.setSelectedIndex(4);
         binding.selectZigbeeMode.setOnTabSelectionChangedListener((title, value) -> {
             if (value.equals("5")) {
                 binding.btZigbeeconnection.setLabelText("网络");
@@ -91,10 +90,6 @@ public class ZigBeeFragment extends BaseFragment {
                         }
                     });
                 } else {
-                    if (binding.serialPortsZigbee.getSelectedIndex() == 4) {
-                        XToastUtils.error("请选择串口");
-                        return;
-                    }
                     zigBee = new ZigBee(DataBusFactory.newSerialDataBus(binding.serialPortsZigbee.getSelectedIndex(), 38400),
                             b -> {
                                 if (b) {
