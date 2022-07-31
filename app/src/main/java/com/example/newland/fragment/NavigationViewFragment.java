@@ -62,7 +62,7 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
 
     @Override
     protected void initViews() {
-        kv = MMKV.mmkvWithID("AppInfo", MMKV.SINGLE_PROCESS_MODE);
+        kv = MMKV.defaultMMKV();
         initTabLayout();
         initTabFragment();
     }
@@ -78,12 +78,14 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
                 new RFIDFragment(),
                 new LedScreenFragment(),
                 new CameraFragment());
-        if (XUI.isTablet()) {
+        if (XUI.isTablet()) {   //判断是平板设备时，增加串口调试功能
             fragmentList.add(new SerialPortFragment());
         }
         for (int i = 0; i < fragmentList.size(); i++) {
             mAdapter.addFragment(fragmentList.get(i), pages[i]);
         }
+
+        binding.contentViewPager.setCurrentItem(kv.decodeInt("page_open", mDestPage.getPosition()), true);
 
         mAdapter.notifyDataSetChanged();
     }
@@ -91,10 +93,8 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
     private void initTabLayout() {
         mAdapter = new FragmentCacheAdapter(getChildFragmentManager());
         binding.contentViewPager.setAdapter(mAdapter);
-        binding.contentViewPager.setCurrentItem(kv.decodeInt("page_open", mDestPage.getPosition()), true);
         // 设置缓存的数量
         binding.contentViewPager.setOffscreenPageLimit(TAB_COUNT);
-
 
         int space = DensityUtils.dp2px(XUI.getContext(), 16);
         binding.tabSegment.setHasIndicator(true);
@@ -102,7 +102,6 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
         binding.tabSegment.setItemSpaceInScrollMode(space);
         binding.tabSegment.setupWithViewPager(binding.contentViewPager, true);
         binding.tabSegment.setPadding(space, 0, space, 0);
-
     }
 
     @Override

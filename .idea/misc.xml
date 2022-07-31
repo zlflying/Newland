@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_APP/Newland/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.286" />
         <entry key="..\:/Android_APP/Newland/app/src/main/res/layout/fragment_camera.xml" value="0.31574074074074077" />
         <entry key="..\:/Android_APP/Newland/app/src/main/res/layout/fragment_modbus4150.xml" value="0.3333333333333333" />
         <entry key="..\:/Android_APP/Newland/app/src/main/res/layout/fragment_serialport.xml" value="0.3333333333333333" />
@@ -11,6 +12,7 @@
         <entry key="..\:/Android_APP/Newland/app/src/main/res/layout/sv_layout_complete.xml" value="0.35520833333333335" />
         <entry key="..\:/Android_APP/Newland/app/src/main/res/layout/sv_layout_custom.xml" value="0.31574074074074077" />
         <entry key="..\:/Android_APP/Newland/app/src/main/res/layout/sv_layout_loading.xml" value="0.31574074074074077" />
+        <entry key="..\:/Android_APP/Newland/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.286" />
         <entry key="..\:/Users/zl/.gradle/caches/transforms-3/e8fba74f144b9360e574cc5a788dff98/transformed/jetified-XUI-1.1.9/res/drawable-v21/xui_config_bg_splash.xml" value="0.172" />
         <entry key="..\:/Users/zl/.gradle/caches/transforms-3/e8fba74f144b9360e574cc5a788dff98/transformed/jetified-XUI-1.1.9/res/drawable/xui_config_bg_splash.xml" value="0.172" />
         <entry key="..\:/Users/zl/AndroidStudioProjects/Newland/app/src/main/res/drawable-v17/bg_rect_round_tag_btn.xml" value="0.1775" />
