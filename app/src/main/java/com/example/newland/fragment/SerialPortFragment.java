@@ -2,6 +2,7 @@ package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,15 @@ import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
 import com.xuexiang.xutil.XUtil;
+import com.xuexiang.xutil.common.StringUtils;
 import com.xuexiang.xutil.data.DateUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Objects;
+
+import cn.hutool.core.util.HexUtil;
 
 @Page(name = "SerialPort")
 public class SerialPortFragment extends XPageFragment {
@@ -42,7 +47,7 @@ public class SerialPortFragment extends XPageFragment {
     @SuppressLint("SimpleDateFormat")
     @Override
     protected void initViews() {
-        binding.logger.setLogFormatter((logContent, logType) -> DateUtils.getNowString(new SimpleDateFormat("[HH:mm:ss]:")) + logContent);
+        binding.logger.setLogFormatter((logContent, logType) -> DateUtils.getNowString(new SimpleDateFormat("[HH:mm:ss]: ")) + logContent);
     }
 
     @Override
@@ -58,12 +63,12 @@ public class SerialPortFragment extends XPageFragment {
             }
         });
         binding.btSerialportconnection.setOnClickListener(view -> {
-            binding.status.setStatus(Status.LOADING);
             @SuppressLint("Recycle")
             TypedArray baudrate_list = getResources().obtainTypedArray(R.array.ports_baudrate);
             int baudrate = baudrate_list.getInt(binding.portBaudrate.getSelectedIndex(), 38400);
             binding.logger.logSuccess(getResources().getStringArray(R.array.serial_ports)[binding.serialPorts.getSelectedIndex()] + "---" + baudrate);
-            if (serialPortEx == null) {
+            if (!binding.btSerialportconnection.getText().toString().equals("打开成功")) {
+                binding.status.setStatus(Status.LOADING);
                 serialPortEx = new SerialPortEx(getResources().getStringArray(R.array.serial_ports)[binding.serialPorts.getSelectedIndex()],
                         baudrate);
                 if (serialPortEx.Open()) {
@@ -77,7 +82,16 @@ public class SerialPortFragment extends XPageFragment {
                 if (serialPortEx.getIsOpend()) {
                     serialPortEx.Close();
                 }
+                binding.btSerialportconnection.setText("打开");
                 serialPortEx = null;
+            }
+        });
+
+        binding.btSend.setOnClickListener(view -> {
+            try {
+                serialPortEx.Send(Objects.requireNonNull(binding.sendData.getText()).toString().getBytes(StandardCharsets.UTF_8));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -85,11 +99,14 @@ public class SerialPortFragment extends XPageFragment {
     private void setSerialListeners() {
         serialPortEx.setOnDataReceiveListener((bytes, i) -> {
             try {
+                MediaPlayer.create(getContext(), R.raw.di).start();
                 if (serialMode) {
                     String data = new String(bytes, 0, i, StandardCharsets.UTF_8);
                     XUtil.runOnUiThread(() -> binding.logger.logSuccess(data));
                 } else {
-                    XUtil.runOnUiThread(() -> binding.logger.logSuccess(Arrays.toString(bytes)));
+                    byte[] data = new byte[i];
+                    System.arraycopy(bytes, 0, data, 0, i);
+                    XUtil.runOnUiThread(() -> binding.logger.logSuccess(HexUtil.encodeHexStr(data).toUpperCase()));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

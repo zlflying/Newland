@@ -3,7 +3,13 @@ package com.example.newland.fragment;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PointF;
+import android.media.FaceDetector;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,11 +32,12 @@ import java.io.File;
 
 @Page(name = "Camera")
 public class CameraFragment extends BaseFragment {
+    private static final String TAG = "CameraFragment";
     FragmentCameraBinding binding;
     private CameraManager cameraManager;
     private final Handler handler = new Handler();
     private MMKV kv;
-
+    private int faceNum = 0;
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
@@ -87,12 +94,13 @@ public class CameraFragment extends BaseFragment {
                 cameraManager.capture(fileData, fileName);
                 XToastUtils.info("截图生成中请等待!");
                 handler.postDelayed(() -> {
-                    Bitmap bitmap = BitmapFactory.decodeFile(fileData + "/" + fileName);
+
                     ImageView imageView = new ImageView(getContext());
-                    imageView.setImageBitmap(bitmap);
+                    imageView.setImageBitmap(drawFace(fileData + "/" + fileName));
+
                     MaterialDialog dialog = new MaterialDialog.Builder(requireContext())
                             .customView(imageView, true)
-                            .title("截图结果")
+                            .title("截图结果(人脸数量:" + faceNum + ")")
                             .positiveText("删除图片")
                             .onPositive((dialog1, which) -> {
                                 dialog1.dismiss();
@@ -161,11 +169,48 @@ public class CameraFragment extends BaseFragment {
         });
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (cameraManager != null) {
             cameraManager.releaseCamera();
         }
+    }
+
+    private Bitmap drawFace(String pathName) {
+        int maxFaces = 10;
+        BitmapFactory.Options BitmapFactoryOptionsbfo = new BitmapFactory.Options();
+        BitmapFactoryOptionsbfo.inMutable = true;
+        BitmapFactoryOptionsbfo.inPreferredConfig = Bitmap.Config.RGB_565;    //构造位图生成的参数，必须为565。类名+enum
+        Bitmap myBitmap = BitmapFactory.decodeFile(pathName, BitmapFactoryOptionsbfo);
+        int imageWidth = myBitmap.getWidth();
+        int imageHeight = myBitmap.getHeight();
+        FaceDetector.Face[] myFace = new FaceDetector.Face[maxFaces];        //分配人脸数组空间
+        FaceDetector myFaceDetect = new FaceDetector(imageWidth, imageHeight, maxFaces);
+        int numberOfFaceDetected = myFaceDetect.findFaces(myBitmap, myFace);    //FaceDetector 构造实例并解析人脸
+        faceNum = numberOfFaceDetected;
+        XToastUtils.info("识别到" + numberOfFaceDetected + "张人脸信息");
+        Canvas canvas = new Canvas(myBitmap);
+        Paint myPaint = new Paint();
+        myPaint.setColor(Color.GREEN);
+        myPaint.setAntiAlias(false);
+        myPaint.setStyle(Paint.Style.STROKE);
+        myPaint.setStrokeWidth(5);            //设置位图上paint操作的参数
+
+        for (int i = 0; i < numberOfFaceDetected; i++) {
+            FaceDetector.Face face = myFace[i];
+            PointF myMidPoint = new PointF();
+            face.getMidPoint(myMidPoint);
+            float myEyesDistance = face.eyesDistance() + 25;    //得到人脸中心点和眼间距离参数，并对每个人脸进行画框
+            Log.i(TAG, "onDraw: " + myEyesDistance);
+            canvas.drawRect(            //矩形框的位置参数
+                    (int) (myMidPoint.x - myEyesDistance),
+                    (int) (myMidPoint.y - myEyesDistance),
+                    (int) (myMidPoint.x + myEyesDistance),
+                    (int) (myMidPoint.y + myEyesDistance),
+                    myPaint);
+        }
+        return myBitmap;
     }
 }
