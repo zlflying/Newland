@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.newland.activity.MainActivity;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentModbus4150Binding;
 import com.example.newland.utils.XToastUtils;

@@ -21,6 +21,9 @@ public class MainActivity extends XPageActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设置沉浸式状态栏
+//        StatusBarUtils.translucent(this);
+//        setContentView(R.layout.activity_main);
 
         ActivityCompat.requestPermissions(this,
                 new String[]{
@@ -34,10 +37,16 @@ public class MainActivity extends XPageActivity {
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 }, 5);
 
+//        findViewById(R.id.cloud_debug).setOnClickListener((view) -> {
+//
+//        });
+//        findViewById(R.id.local_debug).setOnClickListener((view) -> {
+//
+//        });
         PageOption.to(NavigationViewFragment.class)
                 .setAnim(CoreAnim.fade)
                 .open(this);
-//        openPage(NavigationViewFragment.class);
+
     }
 
     @Override

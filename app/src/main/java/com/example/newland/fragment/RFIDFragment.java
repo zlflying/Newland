@@ -1,12 +1,10 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
-import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.newland.R;
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentRfidBinding;
 import com.example.newland.utils.XToastUtils;

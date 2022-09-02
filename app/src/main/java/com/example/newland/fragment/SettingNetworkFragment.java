@@ -1,7 +1,6 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.dialog.MiniLoadingDialog;
 import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText;
-import com.xuexiang.xui.widget.layout.XUILinearLayout;
 import com.xuexiang.xui.widget.popupwindow.bar.CookieBar;
 import com.xuexiang.xutil.XUtil;
 
@@ -100,7 +98,6 @@ public class SettingNetworkFragment extends BaseFragment {
     @Override
     protected void initViews() {
         kv = MMKV.mmkvWithID("InetInfo", MMKV.MULTI_PROCESS_MODE);
-        initLayout();
         initContent();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy", Locale.CHINA);
         String currentYear = dateFormat.format(new Date());
@@ -136,7 +133,7 @@ public class SettingNetworkFragment extends BaseFragment {
         binding.ipaddress4017.setText(kv.decodeString("ipaddress_4017", simIPAddress));
         binding.prot4017.setText(kv.decodeInt("port_4017", 6000) + "");
         binding.ipaddressZigbee.setText(kv.decodeString("ipaddress_zigbee", simIPAddress));
-        binding.protZigbee.setText(kv.decodeInt("port_zigbee", 6000)+"");
+        binding.protZigbee.setText(kv.decodeInt("port_zigbee", 6000) + "");
         binding.ipaddressRfid.setText(kv.decodeString("ipaddress_rfid", simIPAddress));
         binding.protRfid.setText(kv.decodeInt("port_rfid", 6000) + "");
         binding.ipaddressLed.setText(kv.decodeString("ipaddress_led", simIPAddress));
@@ -205,21 +202,6 @@ public class SettingNetworkFragment extends BaseFragment {
             if (!materialEditText.validate()) return false;
         }
         return true;
-    }
-
-    /**
-     * 设置item样式
-     */
-    private void initLayout() {
-        ArrayList<XUILinearLayout> xuiLinearLayouts = new ArrayList<>();
-        Collections.addAll(xuiLinearLayouts, binding.xuiLayout1, binding.xuiLayout2, binding.xuiLayout3, binding.xuiLayout4, binding.xuiLayout5, binding.xuiLayout6);
-        for (XUILinearLayout xuiLinearLayout : xuiLinearLayouts) {
-            xuiLinearLayout.setRadius(40);
-            xuiLinearLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            xuiLinearLayout.setShadowColor(R.color.selector_tag_color);
-            xuiLinearLayout.setAlpha(0.75F);
-            xuiLinearLayout.setElevation(11);
-        }
     }
 
 

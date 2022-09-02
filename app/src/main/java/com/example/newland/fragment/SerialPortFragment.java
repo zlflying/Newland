@@ -15,12 +15,10 @@ import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
 import com.xuexiang.xutil.XUtil;
-import com.xuexiang.xutil.common.StringUtils;
 import com.xuexiang.xutil.data.DateUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Objects;
 
 import cn.hutool.core.util.HexUtil;

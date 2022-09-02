@@ -23,6 +23,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/setting_item"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -88,6 +89,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/setting_item"
                 android:orientation="vertical"
                 android:padding="8dp">
                 <!--4017-->
@@ -182,6 +184,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/setting_item"
                 android:orientation="vertical"
                 android:padding="8dp">
                 <!--ZigBee-->
@@ -246,6 +249,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/setting_item"
                 android:orientation="vertical"
                 android:padding="8dp">
                 <!--rfid-->
@@ -310,6 +314,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/setting_item"
                 android:orientation="vertical"
                 android:padding="8dp">
                 <!--led-->
@@ -374,6 +379,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="25dp"
+                android:background="@drawable/setting_item"
                 android:orientation="vertical"
                 android:padding="8dp">
                 <!--led-->

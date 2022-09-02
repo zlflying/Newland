@@ -77,7 +77,6 @@ public class CameraFragment extends BaseFragment {
                 }
             }, 2000);
         });
-
     }
 
 
@@ -96,7 +95,15 @@ public class CameraFragment extends BaseFragment {
                 handler.postDelayed(() -> {
 
                     ImageView imageView = new ImageView(getContext());
+
                     imageView.setImageBitmap(drawFace(fileData + "/" + fileName));
+
+//                    if (XUI.isTablet()) {
+//                        imageView.setImageBitmap(BitmapFactory.decodeFile(fileData + "/" + fileName));
+//                    } else {
+//                        imageView.setImageBitmap(drawFace("/storage/emulated/0/Android/data/com.muxmu.newland/cache/1659439578272.png"));
+////                    imageView.setImageBitmap(drawFace(fileData + "/" + fileName));
+//                    }
 
                     MaterialDialog dialog = new MaterialDialog.Builder(requireContext())
                             .customView(imageView, true)
@@ -178,6 +185,13 @@ public class CameraFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 调用Android自带人脸识别库
+     * 实现人脸数量及绘制人脸识别框
+     *
+     * @param pathName 需识别图片路径
+     * @return 绘制完成后的Bitmap
+     */
     private Bitmap drawFace(String pathName) {
         int maxFaces = 10;
         BitmapFactory.Options BitmapFactoryOptionsbfo = new BitmapFactory.Options();
@@ -198,11 +212,18 @@ public class CameraFragment extends BaseFragment {
         myPaint.setStyle(Paint.Style.STROKE);
         myPaint.setStrokeWidth(5);            //设置位图上paint操作的参数
 
+        Paint textPaint = new Paint();
+        textPaint.setColor(Color.GREEN);
+        textPaint.setTextSize(50);
+        textPaint.setStyle(Paint.Style.FILL);
+        Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+        canvas.drawText("仅供测试", 30, Math.abs(fontMetrics.top), textPaint);//文字完全显示
+
         for (int i = 0; i < numberOfFaceDetected; i++) {
             FaceDetector.Face face = myFace[i];
             PointF myMidPoint = new PointF();
             face.getMidPoint(myMidPoint);
-            float myEyesDistance = face.eyesDistance() + 25;    //得到人脸中心点和眼间距离参数，并对每个人脸进行画框
+            float myEyesDistance = face.eyesDistance() + 20;    //得到人脸中心点和眼间距离参数，并对每个人脸进行画框
             Log.i(TAG, "onDraw: " + myEyesDistance);
             canvas.drawRect(            //矩形框的位置参数
                     (int) (myMidPoint.x - myEyesDistance),
