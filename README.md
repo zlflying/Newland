@@ -1,11 +1,11 @@
 ![](app/src/main/res/drawable/newland_logo.png)
 ## Newland test
 
-![](img/Newland APP.png)
+<img height="200" src="img/Newland APP.png" width="300"/>
 
-![](img/4150_img-1.png)
+<img height="600" src="img/4150_img-1.png" width="300"/>
 
-![](img/4017_img_2.png)
+<img height="600" src="img/4017_img_2.png" width="300"/>
 
 
 - 本程序用于新大陆设备的连接测试
