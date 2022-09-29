@@ -67,6 +67,8 @@ dependencies {
 
     implementation 'cn.hutool:hutool-all:5.8.5'
 
+
+
     implementation files('libs/ioSerialPort.jar')
     implementation files('libs/hardware.jar')
     implementation files('libs/ipcamera.jar')
