@@ -85,8 +85,10 @@ public class NavigationViewFragment extends BaseFragment implements TabSegment.O
             mAdapter.addFragment(fragmentList.get(i), pages[i]);
         }
 
+        //获取上次打开的page页面，并打开
         binding.contentViewPager.setCurrentItem(kv.decodeInt("page_open", mDestPage.getPosition()), true);
 
+        //通知Adapter更新
         mAdapter.notifyDataSetChanged();
     }
 

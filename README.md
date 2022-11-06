@@ -1,7 +1,7 @@
 ![](app/src/main/res/drawable/newland_logo.png)
 ## Newland test
 
-<img height="300" src="img/Newland APP.png" width="600"/>
+<img height="310" src="img/Newland APP.png" width="610"/>
 
 <img height="600" src="img/4150_img-1.png" width="300"/>
 
