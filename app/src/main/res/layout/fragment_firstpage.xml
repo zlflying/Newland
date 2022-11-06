@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <ScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,7 +22,9 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="50dp"
                 app:srcCompat="@drawable/ic_iot_logo"
-                tools:srcCompat="@drawable/ic_iot_logo" />
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@drawable/ic_iot_logo"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -29,7 +32,7 @@
                 android:layout_margin="15dp"
                 android:gravity="center"
                 android:text="@string/newland_test"
-                android:textColor="#3E99D2"
+                android:textColor="#0288D1"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -38,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="13dp"
                 android:text="@string/first_text"
-                android:textColor="#3E99D2"
+                android:textColor="#0288D1"
                 android:textSize="18sp" />
 
 
@@ -48,11 +51,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="7sp"
+                android:minHeight="48dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:padding="10dp"
                 android:text="@string/get_local_ip"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 app:rb_backgroundColor="@color/tips"
-                app:rb_isRadiusAdjustBounds="true" />
+                app:rb_isRadiusAdjustBounds="true"
+                tools:ignore="RtlSymmetry" />
 
 
             <TextView

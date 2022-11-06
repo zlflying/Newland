@@ -8,6 +8,7 @@ import com.example.newland.base.BaseActivity;
 import com.example.newland.receiver.NetWorkStateReceiver;
 import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.PageConfig;
+import com.xuexiang.xui.XUI;
 
 public class MyApp extends Application {
     private NetWorkStateReceiver netStateReceiver;

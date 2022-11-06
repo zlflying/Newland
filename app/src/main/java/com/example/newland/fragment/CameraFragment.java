@@ -88,6 +88,7 @@ public class CameraFragment extends BaseFragment {
         binding.status.setOnLoadingClickListener(v -> binding.status.dismiss());
         binding.btCapture.setOnClickListener(view -> {
             try {
+
                 String fileData = requireContext().getExternalCacheDir().getAbsolutePath();
                 String fileName = System.currentTimeMillis() + ".png";
                 cameraManager.capture(fileData, fileName);
@@ -97,13 +98,6 @@ public class CameraFragment extends BaseFragment {
                     ImageView imageView = new ImageView(getContext());
 
                     imageView.setImageBitmap(drawFace(fileData + "/" + fileName));
-
-//                    if (XUI.isTablet()) {
-//                        imageView.setImageBitmap(BitmapFactory.decodeFile(fileData + "/" + fileName));
-//                    } else {
-//                        imageView.setImageBitmap(drawFace("/storage/emulated/0/Android/data/com.muxmu.newland/cache/1659439578272.png"));
-////                    imageView.setImageBitmap(drawFace(fileData + "/" + fileName));
-//                    }
 
                     MaterialDialog dialog = new MaterialDialog.Builder(requireContext())
                             .customView(imageView, true)
@@ -126,6 +120,7 @@ public class CameraFragment extends BaseFragment {
                 e.printStackTrace();
             }
         });
+
         binding.btUp.setOnTouchListener((v1, event) -> {
             try {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {

@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="Camera测试"
+                android:text="@string/camera_test"
                 android:textColor="#3E99D2"
                 android:textSize="20sp" />
 
@@ -74,7 +74,8 @@
                     app:label_height="18dp"
                     app:label_orientation="LEFT_TOP"
                     app:label_text="网络"
-                    app:label_textSize="10sp" />
+                    app:label_textSize="10sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
 
@@ -114,7 +115,8 @@
                     android:layout_centerInParent="true"
                     android:text=" UP "
                     app:rb_backgroundColor="@color/xui_config_color_blue"
-                    app:rb_isRadiusAdjustBounds="true" />
+                    app:rb_isRadiusAdjustBounds="true"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <com.xuexiang.xui.widget.button.roundbutton.RoundButton
                     android:id="@+id/bt_down"
@@ -124,7 +126,8 @@
                     android:layout_centerInParent="true"
                     android:text="DOWN"
                     app:rb_backgroundColor="@color/xui_config_color_blue"
-                    app:rb_isRadiusAdjustBounds="true" />
+                    app:rb_isRadiusAdjustBounds="true"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <com.xuexiang.xui.widget.button.roundbutton.RoundButton
                     android:id="@+id/bt_capture"
@@ -133,28 +136,31 @@
                     android:layout_centerInParent="true"
                     android:text="截图"
                     app:rb_backgroundColor="@color/xui_config_color_blue"
-                    app:rb_isRadiusAdjustBounds="true" />
+                    app:rb_isRadiusAdjustBounds="true"
+                    tools:ignore="TouchTargetSizeCheck" />
 
 
                 <com.xuexiang.xui.widget.button.roundbutton.RoundButton
                     android:id="@+id/bt_right"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
                     android:text="RIGHT"
                     app:rb_backgroundColor="@color/xui_config_color_blue"
-                    app:rb_isRadiusAdjustBounds="true" />
+                    app:rb_isRadiusAdjustBounds="true"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <com.xuexiang.xui.widget.button.roundbutton.RoundButton
                     android:id="@+id/bt_left"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:text="LEFT"
                     app:rb_backgroundColor="@color/xui_config_color_blue"
-                    app:rb_isRadiusAdjustBounds="true" />
+                    app:rb_isRadiusAdjustBounds="true"
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </RelativeLayout>
         </LinearLayout>

@@ -53,7 +53,7 @@ android {
 dependencies {
 
     //XUI
-    implementation 'com.github.xuexiangjys:XUI:1.1.9'
+    implementation 'com.github.xuexiangjys:XUI:1.2.0'
 
     // XPage
     implementation 'com.github.xuexiangjys.XPage:xpage-lib:3.3.0'
