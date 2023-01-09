@@ -1,9 +1,12 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentRfidBinding;
@@ -17,6 +20,8 @@ import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.utils.CountDownButtonHelper;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
 import com.xuexiang.xutil.XUtil;
+
+import java.util.Optional;
 
 @Page(name = "RFID")
 public class RFIDFragment extends BaseFragment {
@@ -142,12 +147,11 @@ public class RFIDFragment extends BaseFragment {
         binding.status.setOnLoadingClickListener(v -> binding.status.dismiss());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (rfid != null) {
-            rfid.stopConnect();
-        }
+        Optional.ofNullable(rfid).ifPresent(RFID::stopConnect);
     }
 
 }

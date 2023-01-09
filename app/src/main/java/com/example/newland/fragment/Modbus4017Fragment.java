@@ -1,10 +1,13 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentModbus4017Binding;
@@ -23,6 +26,7 @@ import com.xuexiang.xutil.XUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 
 @Page(name = "Modbus4017")
 public class Modbus4017Fragment extends BaseFragment {
@@ -187,12 +191,11 @@ public class Modbus4017Fragment extends BaseFragment {
         return data;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (md4017 != null) {
-            md4017.stopConnect();
-        }
+        Optional.ofNullable(md4017).ifPresent(MD4017::stopConnect);
     }
 
 }

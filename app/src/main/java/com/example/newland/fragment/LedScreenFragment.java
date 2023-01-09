@@ -1,10 +1,13 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentLedscreenBinding;
@@ -18,6 +21,8 @@ import com.tencent.mmkv.MMKV;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
+
+import java.util.Optional;
 
 @Page(name = "LedScreen")
 public class LedScreenFragment extends BaseFragment {
@@ -147,11 +152,10 @@ public class LedScreenFragment extends BaseFragment {
         };
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (ledScreen != null) {
-            ledScreen.stopConnect();
-        }
+        Optional.ofNullable(ledScreen).ifPresent(LedScreen::stopConnect);
     }
 }

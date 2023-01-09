@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.media.FaceDetector;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentCameraBinding;
@@ -29,6 +32,7 @@ import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xui.widget.popupwindow.status.Status;
 
 import java.io.File;
+import java.util.Optional;
 
 @Page(name = "Camera")
 public class CameraFragment extends BaseFragment {
@@ -172,12 +176,11 @@ public class CameraFragment extends BaseFragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (cameraManager != null) {
-            cameraManager.releaseCamera();
-        }
+        Optional.ofNullable(cameraManager).ifPresent(CameraManager::releaseCamera);
     }
 
     /**

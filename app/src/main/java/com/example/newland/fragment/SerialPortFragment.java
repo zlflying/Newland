@@ -3,9 +3,12 @@ package com.example.newland.fragment;
 import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.newland.R;
 import com.example.newland.databinding.FragmentSerialportBinding;
@@ -20,6 +23,7 @@ import com.xuexiang.xutil.data.DateUtils;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
+import java.util.Optional;
 
 import cn.hutool.core.util.HexUtil;
 
@@ -112,4 +116,10 @@ public class SerialPortFragment extends XPageFragment {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Optional.ofNullable(serialPortEx).ifPresent(SerialPortEx::Close);
+    }
 }

@@ -1,15 +1,19 @@
 package com.example.newland.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentModbus4150Binding;
 import com.example.newland.utils.XToastUtils;
+import com.nle.mylibrary.forUse.led.LedScreen;
 import com.nle.mylibrary.forUse.mdbus4150.MdBus4150RelayListener;
 import com.nle.mylibrary.forUse.mdbus4150.MdBus4150SensorListener;
 import com.nle.mylibrary.forUse.mdbus4150.Modbus4150;
@@ -23,6 +27,7 @@ import com.xuexiang.xutil.XUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Page(name = "Modbus4150")
 public class Modbus4150Fragment extends BaseFragment {
@@ -219,11 +224,10 @@ public class Modbus4150Fragment extends BaseFragment {
         };
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (modbus4150 != null) {
-            modbus4150.stopConnect();
-        }
+        Optional.ofNullable(modbus4150).ifPresent(Modbus4150::stopConnect);
     }
 }

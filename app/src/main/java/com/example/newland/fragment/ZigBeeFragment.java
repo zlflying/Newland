@@ -3,11 +3,14 @@ package com.example.newland.fragment;
 import static java.lang.String.format;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.newland.base.BaseFragment;
 import com.example.newland.databinding.FragmentZigbeeBinding;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Page(name = "ZigBee")
 public class ZigBeeFragment extends BaseFragment {
@@ -225,12 +229,11 @@ public class ZigBeeFragment extends BaseFragment {
         };
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (zigBee != null) {
-            zigBee.stopConnect();
-        }
+        Optional.ofNullable(zigBee).ifPresent(ZigBee::stopConnect);
     }
 
 }
